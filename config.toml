@@ -1,4 +1,4 @@
-baseURL = 'https://ThornDuke.gitlab.io/'
+baseURL = 'https://ThornDuke.github.io/'
 languageCode = 'it'
 title = 'Hacker Nirvana'
 theme = "ananke"
