@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>context on Sam Sahara</title>
-    <link>http:s//ThornDuke.github.io/tags/context/</link>
+    <link>https://ThornDuke.github.io/tags/context/</link>
     <description>Recent content in context on Sam Sahara</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>it</language>
-    <lastBuildDate>Mon, 08 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="http:s//ThornDuke.github.io/tags/context/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 08 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ThornDuke.github.io/tags/context/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cosa è &#34;this&#34; in una funzione JavaScript?</title>
-      <link>http:s//ThornDuke.github.io/posts/211107-this/</link>
+      <link>https://ThornDuke.github.io/posts/211107-this/</link>
       <pubDate>Mon, 08 Nov 2021 00:00:00 +0000</pubDate>
       
-      <guid>http:s//ThornDuke.github.io/posts/211107-this/</guid>
+      <guid>https://ThornDuke.github.io/posts/211107-this/</guid>
       <description>Il problema Uno dei concetti più ripetuti e più accettati tra i programmatori JavaScript è che this è un costrutto difficile da capire, quasi esoterico. E in effetti i malintesi diffusi su questo argomento sono tanti: che this, chiamato all&amp;rsquo;interno di funzione, si riferisca alla funzione stessa, oppure che si riferisca alla istanza cui la funzione-metodo appartiene.
 Cerchiamo di capirci qualcosa in più.
 L&amp;rsquo;ambito e il contesto L&#39;ambito di una funzione JavaScript (lo scope) è, da un punto di vista esteriore, tutto quello che c&amp;rsquo;è tra una parentesi graffa aperta e una chiusa.</description>
