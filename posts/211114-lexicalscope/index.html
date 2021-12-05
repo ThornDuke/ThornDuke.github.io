@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="JavaScript usa un particolare modello per gestire l&rsquo;accesso alle variabili, chiamato lexical scope. È proprio il lexical scope che consente al motore JavaScript di distinguere tra variabili diverse ma con lo stesso nome, riconoscere variabili all&rsquo;interno di funzioni o di cicli for, accedere a variabili globali dall&rsquo;interno di una funzione o di un blocco.
 Vediamo come funziona.
-Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della fase di esecuzione il codice passa per una fase di vera e propria compilazione, suddivisa in tre sotto-fasi:">
+Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della esecuzione il codice passa per una fase di vera e propria compilazione, suddivisa in tre sotto-fasi:">
     <meta name="generator" content="Hugo 0.89.2" />
     
     
@@ -31,7 +31,7 @@ Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della fas
     <meta property="og:title" content="Il Lexical Scope" />
 <meta property="og:description" content="JavaScript usa un particolare modello per gestire l&rsquo;accesso alle variabili, chiamato lexical scope. È proprio il lexical scope che consente al motore JavaScript di distinguere tra variabili diverse ma con lo stesso nome, riconoscere variabili all&rsquo;interno di funzioni o di cicli for, accedere a variabili globali dall&rsquo;interno di una funzione o di un blocco.
 Vediamo come funziona.
-Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della fase di esecuzione il codice passa per una fase di vera e propria compilazione, suddivisa in tre sotto-fasi:" />
+Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della esecuzione il codice passa per una fase di vera e propria compilazione, suddivisa in tre sotto-fasi:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://ThornDuke.github.io/posts/211114-lexicalscope/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-11-14T00:00:00+00:00" />
@@ -40,14 +40,14 @@ Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della fas
 <meta itemprop="name" content="Il Lexical Scope">
 <meta itemprop="description" content="JavaScript usa un particolare modello per gestire l&rsquo;accesso alle variabili, chiamato lexical scope. È proprio il lexical scope che consente al motore JavaScript di distinguere tra variabili diverse ma con lo stesso nome, riconoscere variabili all&rsquo;interno di funzioni o di cicli for, accedere a variabili globali dall&rsquo;interno di una funzione o di un blocco.
 Vediamo come funziona.
-Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della fase di esecuzione il codice passa per una fase di vera e propria compilazione, suddivisa in tre sotto-fasi:"><meta itemprop="datePublished" content="2021-11-14T00:00:00+00:00" />
+Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della esecuzione il codice passa per una fase di vera e propria compilazione, suddivisa in tre sotto-fasi:"><meta itemprop="datePublished" content="2021-11-14T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2021-11-14T00:00:00+00:00" />
-<meta itemprop="wordCount" content="987">
+<meta itemprop="wordCount" content="1008">
 <meta itemprop="keywords" content="scope," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Il Lexical Scope"/>
 <meta name="twitter:description" content="JavaScript usa un particolare modello per gestire l&rsquo;accesso alle variabili, chiamato lexical scope. È proprio il lexical scope che consente al motore JavaScript di distinguere tra variabili diverse ma con lo stesso nome, riconoscere variabili all&rsquo;interno di funzioni o di cicli for, accedere a variabili globali dall&rsquo;interno di una funzione o di un blocco.
 Vediamo come funziona.
-Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della fase di esecuzione il codice passa per una fase di vera e propria compilazione, suddivisa in tre sotto-fasi:"/>
+Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della esecuzione il codice passa per una fase di vera e propria compilazione, suddivisa in tre sotto-fasi:"/>
 
 	
   </head>
@@ -175,7 +175,7 @@ Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della fas
       
       
         <span class="f6 mv4 dib tracked"> - 5 minutes read </span>
-        <span class="f6 mv4 dib tracked"> - 987 words </span>
+        <span class="f6 mv4 dib tracked"> - 1008 words </span>
       
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>JavaScript usa un particolare modello per gestire l&rsquo;accesso alle variabili, chiamato <strong>lexical
@@ -184,14 +184,14 @@ diverse ma con lo stesso nome, riconoscere variabili all&rsquo;interno di funzio
 accedere a variabili globali dall&rsquo;interno di una funzione o di un blocco.</p>
 <p>Vediamo come funziona.</p>
 <h2 id="il-compilatore-javascript">Il compilatore JavaScript</h2>
-<p>JavaScript è un linguaggio compilato. Prima della fase di esecuzione il codice passa per una fase di
+<p>JavaScript è un linguaggio compilato. Prima della esecuzione il codice passa per una fase di
 vera e propria compilazione, suddivisa in tre sotto-fasi:</p>
 <ol>
 <li>
 <p><strong>tokenizing/lexing</strong>: il codice viene suddiviso in cellule indivisibili chiamate <em>tokens</em>,
 ognuna delle quali rappresenta un elemento significativo. Ad esempio, la linea</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animal</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;fox&#39;</span>;
-</code></pre></div><p>viene suddivisa nei 5 tokens <code>let</code>, <code>animal</code>, <code>=</code>, <code>'fox'</code>, <code>;</code>.</p>
+</code></pre></div><p>viene suddivisa nei 5 tokens <code>let</code>, <code>animal</code>, <code>=</code>, <code>'fox'</code>, <code>;</code> (il punto e virgola è un token).</p>
 </li>
 <li>
 <p><strong>parsing</strong>: la lista di tokens viene organizzata in una struttura ad albero chiamata <em>abstract
@@ -288,12 +288,14 @@ di quella variabile nè nello <em>scope</em> corrente nè in nessuno di quelli s
 
 <span style="color:#a6e22e">getAnimalName</span>();
 
-<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">animal</span>);
+<span style="color:#75715e">// output del valore di una variabile che /non dovrebbe/ esistere
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">animal</span>);
 <span style="color:#75715e">// &#39;fox&#39;
-</span><span style="color:#75715e">// ???
+</span><span style="color:#75715e">// da dove viene fuori questo valore?
 </span></code></pre></div><p>È un problema di cui JavaScript ha sempre sofferto: se si assegna un valore ad una variabile non
-dichiarata, JavaScript crea silenziosamente una variabile con quel nome nello <em>scope</em> globale, con
-il concreto rischio di generare <em>bug</em> insidiosi. Si può però costringere il compilatore a sollevare
+dichiarata, JavaScript crea <em>silenziosamente</em> una variabile con quel nome nello <em>scope</em> globale, con
+il concreto rischio di generare <em>bug</em> insidiosi.</p>
+<p>Si può però costringere il compilatore a sollevare
 un errore in presenza di qualunque variabile non formalmente dichiarata facendo girare il programma
 (o la funzione) in <em>strict mode</em>.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#e6db74">&#39;use strict&#39;</span>;

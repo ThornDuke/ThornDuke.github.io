@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hoisting on Sam Sahara</title>
+    <link>https://ThornDuke.github.io/tags/hoisting/</link>
+    <description>Recent content in hoisting on Sam Sahara</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>it</language>
+    <lastBuildDate>Sun, 05 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ThornDuke.github.io/tags/hoisting/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hoisting</title>
+      <link>https://ThornDuke.github.io/posts/211205-hoisting/</link>
+      <pubDate>Sun, 05 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ThornDuke.github.io/posts/211205-hoisting/</guid>
+      <description>Ogni variabile o dichiarazione di funzione ha un proprio ambito di visibilità e utilizzabilità (scope). Ma all’interno di uno scope una data variabile o funzione è visibile e accessibile anche prima della sua formale dichiarazione. E’ il meccanismo dello hoisting.
+Cosa è To hoist in inglese significa sollevare qualcosa di pesante, a volte con appositi strumenti o corde; issare. In JavaScript è il meccanismo con il quale il compilatore (durante la fase del parsing) raccoglie tutte le dichiarazioni di funzione e di variabile trovate in uno scope e le sposta all’inizio dello scope stesso, in modo da poterle usare per tutti i riferimenti e le assegnazioni successive.</description>
+    </item>
+    
+  </channel>
+</rss>

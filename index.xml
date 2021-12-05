@@ -6,7 +6,17 @@
     <description>Recent content in Hacker Nirvana on Sam Sahara</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>it</language>
-    <lastBuildDate>Tue, 16 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ThornDuke.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 05 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ThornDuke.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hoisting</title>
+      <link>https://ThornDuke.github.io/posts/211205-hoisting/</link>
+      <pubDate>Sun, 05 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ThornDuke.github.io/posts/211205-hoisting/</guid>
+      <description>Ogni variabile o dichiarazione di funzione ha un proprio ambito di visibilità e utilizzabilità (scope). Ma all’interno di uno scope una data variabile o funzione è visibile e accessibile anche prima della sua formale dichiarazione. E’ il meccanismo dello hoisting.
+Cosa è To hoist in inglese significa sollevare qualcosa di pesante, a volte con appositi strumenti o corde; issare. In JavaScript è il meccanismo con il quale il compilatore (durante la fase del parsing) raccoglie tutte le dichiarazioni di funzione e di variabile trovate in uno scope e le sposta all’inizio dello scope stesso, in modo da poterle usare per tutti i riferimenti e le assegnazioni successive.</description>
+    </item>
+    
     <item>
       <title>Il Lexical Scope</title>
       <link>https://ThornDuke.github.io/posts/211114-lexicalscope/</link>
@@ -15,7 +25,7 @@
       <guid>https://ThornDuke.github.io/posts/211114-lexicalscope/</guid>
       <description>JavaScript usa un particolare modello per gestire l&amp;rsquo;accesso alle variabili, chiamato lexical scope. È proprio il lexical scope che consente al motore JavaScript di distinguere tra variabili diverse ma con lo stesso nome, riconoscere variabili all&amp;rsquo;interno di funzioni o di cicli for, accedere a variabili globali dall&amp;rsquo;interno di una funzione o di un blocco.
 Vediamo come funziona.
-Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della fase di esecuzione il codice passa per una fase di vera e propria compilazione, suddivisa in tre sotto-fasi:</description>
+Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della esecuzione il codice passa per una fase di vera e propria compilazione, suddivisa in tre sotto-fasi:</description>
     </item>
     
     <item>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Hoisting | Sam Sahara</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Ogni variabile o dichiarazione di funzione ha un proprio ambito di visibilità e utilizzabilità (scope). Ma all’interno di uno scope una data variabile o funzione è visibile e accessibile anche prima della sua formale dichiarazione. E’ il meccanismo dello hoisting.
+Cosa è To hoist in inglese significa sollevare qualcosa di pesante, a volte con appositi strumenti o corde; issare. In JavaScript è il meccanismo con il quale il compilatore (durante la fase del parsing) raccoglie tutte le dichiarazioni di funzione e di variabile trovate in uno scope e le sposta all’inizio dello scope stesso, in modo da poterle usare per tutti i riferimenti e le assegnazioni successive.">
+    <meta name="generator" content="Hugo 0.89.2" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Hoisting" />
+<meta property="og:description" content="Ogni variabile o dichiarazione di funzione ha un proprio ambito di visibilità e utilizzabilità (scope). Ma all’interno di uno scope una data variabile o funzione è visibile e accessibile anche prima della sua formale dichiarazione. E’ il meccanismo dello hoisting.
+Cosa è To hoist in inglese significa sollevare qualcosa di pesante, a volte con appositi strumenti o corde; issare. In JavaScript è il meccanismo con il quale il compilatore (durante la fase del parsing) raccoglie tutte le dichiarazioni di funzione e di variabile trovate in uno scope e le sposta all’inizio dello scope stesso, in modo da poterle usare per tutti i riferimenti e le assegnazioni successive." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ThornDuke.github.io/posts/211205-hoisting/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-12-05T00:00:00+00:00" /><meta property="og:site_name" content="Sam Sahara" />
+
+<meta itemprop="name" content="Hoisting">
+<meta itemprop="description" content="Ogni variabile o dichiarazione di funzione ha un proprio ambito di visibilità e utilizzabilità (scope). Ma all’interno di uno scope una data variabile o funzione è visibile e accessibile anche prima della sua formale dichiarazione. E’ il meccanismo dello hoisting.
+Cosa è To hoist in inglese significa sollevare qualcosa di pesante, a volte con appositi strumenti o corde; issare. In JavaScript è il meccanismo con il quale il compilatore (durante la fase del parsing) raccoglie tutte le dichiarazioni di funzione e di variabile trovate in uno scope e le sposta all’inizio dello scope stesso, in modo da poterle usare per tutti i riferimenti e le assegnazioni successive."><meta itemprop="datePublished" content="2021-12-05T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2021-12-05T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1428">
+<meta itemprop="keywords" content="scope,hoisting," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hoisting"/>
+<meta name="twitter:description" content="Ogni variabile o dichiarazione di funzione ha un proprio ambito di visibilità e utilizzabilità (scope). Ma all’interno di uno scope una data variabile o funzione è visibile e accessibile anche prima della sua formale dichiarazione. E’ il meccanismo dello hoisting.
+Cosa è To hoist in inglese significa sollevare qualcosa di pesante, a volte con appositi strumenti o corde; issare. In JavaScript è il meccanismo con il quale il compilatore (durante la fase del parsing) raccoglie tutte le dichiarazioni di funzione e di variabile trovate in uno scope e le sposta all’inizio dello scope stesso, in modo da poterle usare per tutti i riferimenti e le assegnazioni successive."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Sam Sahara
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About pagina">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/posts/" title="Articoli pagina">
+              Articoli
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/contact/" title="Contatti pagina">
+              Contatti
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        ARTICOLI
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://ThornDuke.github.io/posts/211205-hoisting/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://ThornDuke.github.io/posts/211205-hoisting/&amp;text=Hoisting" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://ThornDuke.github.io/posts/211205-hoisting/&amp;title=Hoisting" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Hoisting</h1>
+      
+      <p class="tracked">
+          By <strong>
+          
+              Sergio Spina
+          
+          </strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2021-12-05T00:00:00Z">December 5, 2021</time>
+      
+
+      
+      
+        <span class="f6 mv4 dib tracked"> - 7 minutes read </span>
+        <span class="f6 mv4 dib tracked"> - 1428 words </span>
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>Ogni variabile o dichiarazione di funzione ha un proprio ambito di visibilità e utilizzabilità
+(<em>scope</em>). Ma all’interno di uno scope una data variabile o funzione è visibile e accessibile anche
+<em>prima</em> della sua formale dichiarazione. E’ il meccanismo dello <em>hoisting</em>.</p>
+<h2 id="cosa-è">Cosa è</h2>
+<p><em>To hoist</em> in inglese significa sollevare qualcosa di pesante, a volte con appositi strumenti o
+corde; issare. In JavaScript è il meccanismo con il quale il compilatore (durante la fase del
+<em>parsing</em>) raccoglie tutte le dichiarazioni di funzione e di variabile trovate in uno <em>scope</em> e le
+sposta all’inizio dello <em>scope</em> stesso, in modo da poterle usare per tutti i riferimenti e le
+assegnazioni successive.</p>
+<p>Questo significa che una certa variabile o funzione è accessibile e utilizzabile anche <em>prima</em> che
+sia stata dichiarata. Esempio:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">getFruit</span>();
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getFruit</span>() {
+	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Here you are a pineapple&#39;</span>);
+}
+</code></pre></div><p>Questo codice funziona come ci si aspetta, la chiamata a <code>getFruit()</code> restituisce una stringa nella
+console anche se la funzione chiamata è definita solo successivamente.</p>
+<h2 id="come-funziona">Come funziona</h2>
+<p>L’hoisting funziona in modo lievemente diverso a seconda che si tratti di dichiarazioni di funzione,
+di variabili dichiarate con <code>var</code>, o ancora di variabili dichiarate con <code>let</code> o <code>const</code>.</p>
+<h3 id="dichiarazioni-di-funzione">Dichiarazioni di funzione</h3>
+<p>Quando il compilatore JavaScript trova una dichiarazione di funzione crea all’inizio dello <em>scope</em>
+una dichiarazione di variabile con lo stesso nome della funzione e automaticamente inizializza la
+variabile con un puntatore alla stessa funzione. Poiché questa dichiarazione viene collocata
+all’inizio dello <em>scope</em> tutte le successive chiamate a quella funzione avranno un riferimento
+prestabilito.</p>
+<p>Una particolarità da tenere presente è che nel caso delle funzioni lo <em>scope</em> all’inizio del quale
+viene spostata la dichiarazione è quello della funzione immediatamente raggiungibile (o quello
+globale), non lo <em>scope</em> del blocco <code>for</code> o <code>while</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">fruitList</span>() {
+	<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">foods</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;banana&#39;</span>];
+
+	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">food</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">foods</span>) {
+		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getFruit</span>() {
+			<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Here you are a </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">food</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+		}
+	}
+
+	<span style="color:#a6e22e">getFruit</span>();
+}
+
+<span style="color:#a6e22e">fruitList</span>(); <span style="color:#75715e">// Here you are a banana
+</span></code></pre></div><p>In questo esempio la chiamata a <code>getFruit()</code> viene fatta all’interno della funzione ma, anche se la
+dichiarazione avviene all’interno di un blocco <code>for...of</code>, la chiamata ha successo in quanto il
+compilatore ha &lsquo;sollevato&rsquo; (<em>hoisted</em>) la dichiarazione di variabile <code>getFruit</code> all’inizio dello
+<em>scope</em> di <code>fruitList()</code> e la ha immediatamente inizializzata come puntatore a funzione.</p>
+<h3 id="dichiarazioni-di-variabile-con-var">Dichiarazioni di variabile con var</h3>
+<p>Anche le dichiarazioni di variabili <code>var</code> vengono spostate all’inizio dello <em>scope</em> (<em>scope</em> di
+funzione e non di blocco, proprio come per le funzioni). Ma le variabili <code>var</code> &lsquo;hoisted&rsquo; vengono
+inizializzate a <code>undefined</code>, a differenza che per le funzioni che sono immediatamente utilizzabili.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">smartAnimal</span>); <span style="color:#75715e">// undefined
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">smartAnimal</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;horse&#39;</span>;
+
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">smartAnimal</span>); <span style="color:#75715e">// horse
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">dumbAnimal</span>); <span style="color:#75715e">// reference error: dumbAnimal is not defined
+</span></code></pre></div><p>In questo esempio la dichiarazione della variabile <code>smartAnimal</code> viene spostata all’inizio dello
+<em>scope</em>. La chiamata da parte di <code>console.log</code> infatti trova una variabile con quel nome ma ad essa
+è stato assegnato il valore <code>undefined</code>; subito dopo viene effettuata l’assegnazione di un valore
+(&lsquo;horse&rsquo;) alla variabile; la successiva chiamata da parte di <code>console.log</code> dimostra che adesso la
+variabile è inizializzata ad un valore.</p>
+<p>Infine <code>console.log</code> prova a usare una variabile mai creata, neanche successivamente. Qui non c’è
+<em>hoisting</em> che tenga: non c’è nulla da spostare all’inizio dello <em>scope</em> e quindi il compilatore
+solleva un errore.</p>
+<p>Una cosa interessante (ma del tutto conseguente a quanto abbiamo visto finora) avviene se proviamo
+ad utilizzare una funzione assegnata ad una variabile dichiarata con <code>var</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">getFruit</span>(); <span style="color:#75715e">// TypeError: getFruit is not a function
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">getCity</span>(); <span style="color:#75715e">// NewYork
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">getFruit</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> () {
+	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Here you are an orange&#39;</span>);
+};
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getCity</span>() {
+	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;New York&#39;</span>);
+}
+</code></pre></div><p>In questo caso la dichiarazione di <code>getFruit</code> viene spostata all’inizio dello <em>scope</em>, e quindi è
+utilizzabile; ma essendo una dichiarazione fatta con <code>var</code> il compilatore la inizializza a
+<code>undefined</code>. Questo è il motivo per cui viene restituito un <code>TypeError</code>: il compilatore trova una
+variabile <code>getFruit</code> ma non la riconosce come una funzione. Se invece avessimo dichiarato <code>getFruit</code>
+direttamente come funzione il compilatore avrebbe immediatamente (come abbiamo visto nel capitolo
+precedente) inizializzato la variabile &lsquo;sollevata&rsquo; a funzione, e la chiamata avrebbe dato il
+risultato corretto (come avviene per la chiamata a <code>getCity</code>).</p>
+<p>A questo punto il meccanismo di <em>hoisting</em> mostrato nel codice seguente è chiaro:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">getFruit</span>); <span style="color:#75715e">// undefined
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">getCity</span>(); <span style="color:#75715e">// NewYork
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">getFruit</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> () {
+	<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;Here you are an orange&#39;</span>;
+};
+
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">getFruit</span>()); <span style="color:#75715e">// Here you are an orange
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getCity</span>() {
+	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;New York&#39;</span>);
+}
+</code></pre></div><p><code>getFruit</code> viene dichiarata alla riga 5 con <code>var</code>; viene quindi sollevata all&rsquo;inizio dello <em>scope</em> e
+inizializzata a <code>undefined</code>, e la prima riga del codice lo conferma. Alla riga 5 alla variabile
+<code>getFruit</code> viene assegnata una funzione, e infatti adesso l&rsquo;istruzione <code>console.log</code> alla riga 9,
+pur uguale a quella alla riga 1, restituisce la stringa corretta. La chiamata a <code>getCity</code> alla riga
+3, invece, restituisce subito una stringa nella console in quanto la variabile <code>getCity</code> viene
+dichiarata direttamente come funzione, seppure alla fine del programma.</p>
+<h3 id="dichiarazioni-di-variabili-con-let-e-const">Dichiarazioni di variabili con let e const</h3>
+<p><code>let</code> e <code>const</code> sono acquisizioni piuttosto recenti all&rsquo;armamentario degli strumenti per lo sviluppo
+in JavaScript: e infatti, pur avendo la funzione di dichiarare variabili come <code>var</code> e <code>function</code>,
+hanno un comportamento alquanto diverso dai loro predecessori:</p>
+<ol>
+<li>per inizializzare una variabile <code>var</code> è sufficiente una assegnazione; l&rsquo;unico modo per
+inizializzare una variabile <code>let</code> o <code>const</code> è con una assegnazione collegata ad una istruzione di
+dichiarazione.</li>
+<li>Le variabili <code>var</code>, dopo essere state &lsquo;sollevate&rsquo; all&rsquo;inizio dello <em>scope</em> corrente, vengono
+automaticamente inizializzate a <code>undefined</code>; le variabili <code>let</code> e <code>const</code> non vengono
+inizializzate dopo l&rsquo;hoisting e rimangono inaccessibili fino al momento in cui vengono
+formalmente dichiarate.</li>
+<li>Le variabili <code>var</code> e <code>function</code> vengono &lsquo;sollevate&rsquo; all&rsquo;inizio del più vicino <em>scope</em> di
+funzione, ma non di blocco; le variabili dichiarate con <code>let</code> e <code>const</code> vengono sollevate
+all&rsquo;inizio dello <em>scope</em> corrente, anche se questo fosse uno <em>scope</em> di blocco.</li>
+<li>Da ultimo, le variabili <code>var</code> possono essere <em>ridichiarate</em> all&rsquo;interno dello stesso scope, con
+un effetto praticamente nullo; le variabili <code>let</code> o <code>const</code> non possono essere ridichiarate,
+risultandone altrimenti la restituzione di un errore da parte del compilatore.</li>
+</ol>
+<p>Approfondiamo i primi due punti:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">smartAnimal</span>);
+<span style="color:#75715e">// ReferenceError: Cannot access &#39;smartAnimal&#39; before initialization
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">smartAnimal</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;dog&#39;</span>;
+</code></pre></div><p>In questo caso il compilatore JavaScript restituisce un errore in quanto la variabile &lsquo;smartAnimal&rsquo;
+non è stata ancora inizializzata; si badi: il compilatore <em>sa</em> che la variabile esiste all&rsquo;interno
+dello <em>scope</em>, ma non la considera accessibile in quanto non ancora inizializzata. Proviamo allora a
+inizializzarla prima di usarla:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JavaScript" data-lang="JavaScript"><span style="color:#a6e22e">smartAnimal</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;dog&#39;</span>;
+<span style="color:#75715e">// ReferenceError: Cannot access &#39;smartAnimal&#39; before initialization
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">smartAnimal</span>);
+
+<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">smartAnimal</span>;
+</code></pre></div><p>Ma anche qui viene restituito lo stesso errore, e proprio nel momento in cui si cerca di
+inizializzare la variabile con la stringa &lsquo;dog&rsquo;.</p>
+<h3 id="la-tdz">La TDZ</h3>
+<p>Il punto è che le variabili <code>let</code> e <code>const</code> vengono considerate &lsquo;disponibili&rsquo; e &lsquo;accessibili&rsquo; da
+parte del compilatore solo nel momento in cui vengono formalmente dichiarate con le istruzioni <code>let</code>
+o <code>const</code>. In altre parole le variabili <code>let</code> e <code>const</code> vengono &lsquo;sollevate&rsquo; all&rsquo;inizio dello <em>scope</em>
+in cui sono create, e perciò considerate <em>esistenti</em>, ma diventano anche <em>accessibili</em> solo nel
+momento in cui vengono formalmente dichiarate. La finestra temporale in cui una variabile <code>let</code> o
+<code>const</code> è &lsquo;esistente&rsquo; ma non &lsquo;accessibile&rsquo; viene chiamata <em>Temporal Death Zone</em> (TDZ).</p>
+<p>Vediamo il codice:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JavaScript" data-lang="JavaScript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">bigAnimal</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;elephant&#39;</span>;
+
+{
+	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bigAnimal</span>);
+	<span style="color:#75715e">// ReferenceError: Cannot access &#39;bigAnimal&#39; before initialization
+</span><span style="color:#75715e"></span>
+	<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">bigAnimal</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;whale&#39;</span>;
+}
+</code></pre></div><p>In questo caso la variabile <code>bigAnimal</code> viene inizializzata all&rsquo;inizio del programma con la stringa
+&lsquo;elephant&rsquo;; ciononostante viene sollevato un errore nel momento in cui si cerca di accedervi.</p>
+<p>Il punto è che all&rsquo;interno del blocco c&rsquo;è un&rsquo;altra variabile <code>bigAnimal</code> che viene dichiarata con
+<code>let</code>, che pertanto viene &lsquo;sollevata&rsquo; all&rsquo;inizio del blocco corrente <em>ma non inizializzata</em>; questa
+nuova variabile quindi &lsquo;eclissa&rsquo; la prima agli occhi del compilatore il quale giustamente ci
+notifica di non poter accedere a <code>bigAnimal</code> in quanto non ancora inizializzata.</p>
+<p>Si tratta di un errore dovuto proprio alla presenza di una TDZ tra il momento in cui una variabile è
+semplicemente <em>esistente</em> e il momento in cui è invece effettivamente <em>accessibile</em>.</p>
+<h2 id="conclusioni">Conclusioni</h2>
+<p>L'<em>hoisting</em> è un comportamento complesso del compilatore JavaScript, reso ancora più criptico dal
+fatto di gestire in modo molto diverso le variabili e le funzioni a seconda di come e quando vengono
+dichiarate. La <em>Temporal Death Zone</em>, conseguenza diretta del meccanismo di <em>hoisting</em>, pure incide
+in modo molto diverso sulla gestione dei vari tipi di variabile. Tutta questa complessità e
+disomogeneità di comportamento può certamente essere fonte di errori insidiosi e difficilmente
+individuabili.</p>
+<p>L&rsquo;unico modo per cercare di evitare questi errori sembra essere quello di dichiarare tutte le
+variabili e le funzioni <em>all&rsquo;inizio</em> dello <em>scope</em> di riferimento, riducendo al minimo il lavoro di
+<em>hoisting</em> da parte del compilatore e azzerando la durata della TDZ.</p>
+<ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/scope" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">scope</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/hoisting" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">hoisting</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l"><div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Indice</p>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#cosa-è">Cosa è</a></li>
+    <li><a href="#come-funziona">Come funziona</a>
+      <ul>
+        <li><a href="#dichiarazioni-di-funzione">Dichiarazioni di funzione</a></li>
+        <li><a href="#dichiarazioni-di-variabile-con-var">Dichiarazioni di variabile con var</a></li>
+        <li><a href="#dichiarazioni-di-variabili-con-let-e-const">Dichiarazioni di variabili con let e const</a></li>
+        <li><a href="#la-tdz">La TDZ</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusioni">Conclusioni</a></li>
+  </ul>
+</nav>
+  </div>
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Correlati</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/posts/211114-lexicalscope/">Il Lexical Scope</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/211107-this/">Cosa è &#34;this&#34; in una funzione JavaScript?</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://ThornDuke.github.io/" >
+    &copy;  Sam Sahara 2021 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
