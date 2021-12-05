@@ -42,7 +42,7 @@ Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della ese
 Vediamo come funziona.
 Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della esecuzione il codice passa per una fase di vera e propria compilazione, suddivisa in tre sotto-fasi:"><meta itemprop="datePublished" content="2021-11-14T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2021-11-14T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1008">
+<meta itemprop="wordCount" content="1022">
 <meta itemprop="keywords" content="scope," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Il Lexical Scope"/>
 <meta name="twitter:description" content="JavaScript usa un particolare modello per gestire l&rsquo;accesso alle variabili, chiamato lexical scope. È proprio il lexical scope che consente al motore JavaScript di distinguere tra variabili diverse ma con lo stesso nome, riconoscere variabili all&rsquo;interno di funzioni o di cicli for, accedere a variabili globali dall&rsquo;interno di una funzione o di un blocco.
@@ -58,8 +58,10 @@ Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della ese
    
   
 
-  <header>
-    <div class="bg-black">
+  
+  
+  <header class="cover bg-top" style="background-image: url('https://ThornDuke.github.io/richstall.jpeg');">
+    <div class="pb3-m pb6-l bg-black-60">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
     <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
@@ -113,6 +115,12 @@ Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della ese
   </div>
 </nav>
 
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">Il Lexical Scope</h1>
+          
+        
+      </div>
     </div>
   </header>
 
@@ -175,7 +183,7 @@ Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della ese
       
       
         <span class="f6 mv4 dib tracked"> - 5 minutes read </span>
-        <span class="f6 mv4 dib tracked"> - 1008 words </span>
+        <span class="f6 mv4 dib tracked"> - 1022 words </span>
       
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>JavaScript usa un particolare modello per gestire l&rsquo;accesso alle variabili, chiamato <strong>lexical
@@ -184,8 +192,8 @@ diverse ma con lo stesso nome, riconoscere variabili all&rsquo;interno di funzio
 accedere a variabili globali dall&rsquo;interno di una funzione o di un blocco.</p>
 <p>Vediamo come funziona.</p>
 <h2 id="il-compilatore-javascript">Il compilatore JavaScript</h2>
-<p>JavaScript è un linguaggio compilato. Prima della esecuzione il codice passa per una fase di
-vera e propria compilazione, suddivisa in tre sotto-fasi:</p>
+<p>JavaScript è un linguaggio compilato. Prima della esecuzione il codice passa per una fase di vera e
+propria compilazione, suddivisa in tre sotto-fasi:</p>
 <ol>
 <li>
 <p><strong>tokenizing/lexing</strong>: il codice viene suddiviso in cellule indivisibili chiamate <em>tokens</em>,
@@ -295,9 +303,8 @@ di quella variabile nè nello <em>scope</em> corrente nè in nessuno di quelli s
 </span></code></pre></div><p>È un problema di cui JavaScript ha sempre sofferto: se si assegna un valore ad una variabile non
 dichiarata, JavaScript crea <em>silenziosamente</em> una variabile con quel nome nello <em>scope</em> globale, con
 il concreto rischio di generare <em>bug</em> insidiosi.</p>
-<p>Si può però costringere il compilatore a sollevare
-un errore in presenza di qualunque variabile non formalmente dichiarata facendo girare il programma
-(o la funzione) in <em>strict mode</em>.</p>
+<p>Si può però costringere il compilatore a sollevare un errore in presenza di qualunque variabile non
+formalmente dichiarata facendo girare il programma (o la funzione) in <em>strict mode</em>.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#e6db74">&#39;use strict&#39;</span>;
 
 <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getAnimalName</span>() {
@@ -310,7 +317,13 @@ un errore in presenza di qualunque variabile non formalmente dichiarata facendo 
 <span style="color:#a6e22e">getAnimalName</span>();
 
 <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">animal</span>);
-</code></pre></div><ul class="pa0">
+</code></pre></div><div style="display: flex; flex-direction: row; justify-content: right; margin-top: 2em">
+	<div style="width: 75%">
+		<p style="font-size: 80%; font-style: italic; text-align: right">Nel banner: Richard Stallman, creatore della Free Software Foundation e dell&#39;editor di testo Emacs.</p>
+	</div>
+</div>
+
+<ul class="pa0">
   
    <li class="list">
      <a href="/tags/scope" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">scope</a>

@@ -39,7 +39,7 @@ Cosa è To hoist in inglese significa sollevare qualcosa di pesante, a volte con
 <meta itemprop="description" content="Ogni variabile o dichiarazione di funzione ha un proprio ambito di visibilità e utilizzabilità (scope). Ma all’interno di uno scope una data variabile o funzione è visibile e accessibile anche prima della sua formale dichiarazione. E’ il meccanismo dello hoisting.
 Cosa è To hoist in inglese significa sollevare qualcosa di pesante, a volte con appositi strumenti o corde; issare. In JavaScript è il meccanismo con il quale il compilatore (durante la fase del parsing) raccoglie tutte le dichiarazioni di funzione e di variabile trovate in uno scope e le sposta all’inizio dello scope stesso, in modo da poterle usare per tutti i riferimenti e le assegnazioni successive."><meta itemprop="datePublished" content="2021-12-05T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2021-12-05T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1428">
+<meta itemprop="wordCount" content="1443">
 <meta itemprop="keywords" content="scope,hoisting," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Hoisting"/>
 <meta name="twitter:description" content="Ogni variabile o dichiarazione di funzione ha un proprio ambito di visibilità e utilizzabilità (scope). Ma all’interno di uno scope una data variabile o funzione è visibile e accessibile anche prima della sua formale dichiarazione. E’ il meccanismo dello hoisting.
@@ -54,8 +54,10 @@ Cosa è To hoist in inglese significa sollevare qualcosa di pesante, a volte con
    
   
 
-  <header>
-    <div class="bg-black">
+  
+  
+  <header class="cover bg-top" style="background-image: url('https://ThornDuke.github.io/donknuth.jpeg');">
+    <div class="pb3-m pb6-l bg-black-60">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
     <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
@@ -109,6 +111,12 @@ Cosa è To hoist in inglese significa sollevare qualcosa di pesante, a volte con
   </div>
 </nav>
 
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">Hoisting</h1>
+          
+        
+      </div>
     </div>
   </header>
 
@@ -171,7 +179,7 @@ Cosa è To hoist in inglese significa sollevare qualcosa di pesante, a volte con
       
       
         <span class="f6 mv4 dib tracked"> - 7 minutes read </span>
-        <span class="f6 mv4 dib tracked"> - 1428 words </span>
+        <span class="f6 mv4 dib tracked"> - 1443 words </span>
       
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>Ogni variabile o dichiarazione di funzione ha un proprio ambito di visibilità e utilizzabilità
@@ -193,8 +201,8 @@ sia stata dichiarata. Esempio:</p>
 </code></pre></div><p>Questo codice funziona come ci si aspetta, la chiamata a <code>getFruit()</code> restituisce una stringa nella
 console anche se la funzione chiamata è definita solo successivamente.</p>
 <h2 id="come-funziona">Come funziona</h2>
-<p>L’hoisting funziona in modo lievemente diverso a seconda che si tratti di dichiarazioni di funzione,
-di variabili dichiarate con <code>var</code>, o ancora di variabili dichiarate con <code>let</code> o <code>const</code>.</p>
+<p>L’hoisting funziona in modo diverso a seconda che si tratti di dichiarazioni di funzione, di
+variabili dichiarate con <code>var</code>, o ancora di variabili dichiarate con <code>let</code> o <code>const</code>.</p>
 <h3 id="dichiarazioni-di-funzione">Dichiarazioni di funzione</h3>
 <p>Quando il compilatore JavaScript trova una dichiarazione di funzione crea all’inizio dello <em>scope</em>
 una dichiarazione di variabile con lo stesso nome della funzione e automaticamente inizializza la
@@ -348,6 +356,12 @@ individuabili.</p>
 <p>L&rsquo;unico modo per cercare di evitare questi errori sembra essere quello di dichiarare tutte le
 variabili e le funzioni <em>all&rsquo;inizio</em> dello <em>scope</em> di riferimento, riducendo al minimo il lavoro di
 <em>hoisting</em> da parte del compilatore e azzerando la durata della TDZ.</p>
+<div style="display: flex; flex-direction: row; justify-content: right; margin-top: 2em">
+	<div style="width: 75%">
+		<p style="font-size: 80%; font-style: italic; text-align: right">Nel banner: Donald Knuth, autore di &#39;The art of computer programming&#39; e creatore del software TeX.</p>
+	</div>
+</div>
+
 <ul class="pa0">
   
    <li class="list">
