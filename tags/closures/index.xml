@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>closures on Sam Sahara</title>
+    <link>https://ThornDuke.github.io/tags/closures/</link>
+    <description>Recent content in closures on Sam Sahara</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>it</language>
+    <lastBuildDate>Sun, 06 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://ThornDuke.github.io/tags/closures/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Closures</title>
+      <link>https://ThornDuke.github.io/posts/220206-closures/</link>
+      <pubDate>Sun, 06 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ThornDuke.github.io/posts/220206-closures/</guid>
+      <description>Le closures sono una caratteristica importantissima, addirittura fondamentale nel moderno JavaScript; il concetto di closures attiene esclusivamente alle funzioni (non ci sono closures senza funzioni), e descrive il fenomeno per il quale alcune variabili, dichiarate all&amp;rsquo;interno di funzioni, sono accessibili anche all&amp;rsquo;esterno della funzione nella quale sono dichiarate. Questo concetto sembra essere controintuitivo: in fondo una variabile è visibile solo all&amp;rsquo;interno dello scope nel quale è dichiarata, e una funzione apre e chiude un proprio scope.</description>
+    </item>
+    
+  </channel>
+</rss>
