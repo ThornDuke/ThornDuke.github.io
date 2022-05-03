@@ -8,14 +8,14 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="JavaScript programmazione avanzata, hoisting, scope, let, var, const, function">
     
-    <meta name="generator" content="Hugo 0.89.2" />
+    <meta name="generator" content="Hugo 0.98.0" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.abe0b1c07d5e33565b0f9b998a7b1b5228b709f36af363e2766bc8035f2237b7.css" >
 
 
 
@@ -45,10 +45,12 @@ Cosa è To hoist in inglese significa sollevare qualcosa di pesante, a volte con
 <meta name="twitter:description" content="Ogni variabile o dichiarazione di funzione ha un proprio ambito di visibilità e utilizzabilità (scope). Ma all’interno di uno scope una data variabile o funzione è visibile e accessibile anche prima della sua formale dichiarazione. E’ il meccanismo dello hoisting.
 Cosa è To hoist in inglese significa sollevare qualcosa di pesante, a volte con appositi strumenti o corde; issare. In JavaScript è il meccanismo con il quale il compilatore (durante la fase del parsing) raccoglie tutte le dichiarazioni di funzione e di variabile trovate in uno scope e le sposta all’inizio dello scope stesso, in modo da poterle usare per tutti i riferimenti e le assegnazioni successive."/>
 
+      
+    
 	
   </head>
 
-  <body class="ma0 avenir bg-near-white">
+  <body class="ma0 avenir bg-near-white production">
 
     
    
@@ -193,12 +195,12 @@ sposta all’inizio dello <em>scope</em> stesso, in modo da poterle usare per tu
 assegnazioni successive.</p>
 <p>Questo significa che una certa variabile o funzione è accessibile e utilizzabile anche <em>prima</em> che
 sia stata dichiarata. Esempio:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">getFruit</span>();
-
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getFruit</span>() {
-	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Here you are a pineapple&#39;</span>);
-}
-</code></pre></div><p>Questo codice funziona come ci si aspetta, la chiamata a <code>getFruit()</code> restituisce una stringa nella
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">getFruit</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getFruit</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Here you are a pineapple&#39;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Questo codice funziona come ci si aspetta, la chiamata a <code>getFruit()</code> restituisce una stringa nella
 console anche se la funzione chiamata è definita solo successivamente.</p>
 <h2 id="come-funziona">Come funziona</h2>
 <p>L’hoisting funziona in modo diverso a seconda che si tratti di dichiarazioni di funzione, di
@@ -212,20 +214,20 @@ prestabilito.</p>
 <p>Una particolarità da tenere presente è che nel caso delle funzioni lo <em>scope</em> all’inizio del quale
 viene spostata la dichiarazione è quello della funzione immediatamente raggiungibile (o quello
 globale), non lo <em>scope</em> del blocco <code>for</code> o <code>while</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">fruitList</span>() {
-	<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">foods</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;banana&#39;</span>];
-
-	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">food</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">foods</span>) {
-		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getFruit</span>() {
-			<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Here you are a </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">food</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
-		}
-	}
-
-	<span style="color:#a6e22e">getFruit</span>();
-}
-
-<span style="color:#a6e22e">fruitList</span>(); <span style="color:#75715e">// Here you are a banana
-</span></code></pre></div><p>In questo esempio la chiamata a <code>getFruit()</code> viene fatta all’interno della funzione ma, anche se la
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">fruitList</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">foods</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;banana&#39;</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">food</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">foods</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getFruit</span>() {
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Here you are a </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">food</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">getFruit</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">fruitList</span>(); <span style="color:#75715e">// Here you are a banana
+</span></span></span></code></pre></div><p>In questo esempio la chiamata a <code>getFruit()</code> viene fatta all’interno della funzione ma, anche se la
 dichiarazione avviene all’interno di un blocco <code>for...of</code>, la chiamata ha successo in quanto il
 compilatore ha &lsquo;sollevato&rsquo; (<em>hoisted</em>) la dichiarazione di variabile <code>getFruit</code> all’inizio dello
 <em>scope</em> di <code>fruitList()</code> e la ha immediatamente inizializzata come puntatore a funzione.</p>
@@ -233,13 +235,13 @@ compilatore ha &lsquo;sollevato&rsquo; (<em>hoisted</em>) la dichiarazione di va
 <p>Anche le dichiarazioni di variabili <code>var</code> vengono spostate all’inizio dello <em>scope</em> (<em>scope</em> di
 funzione e non di blocco, proprio come per le funzioni). Ma le variabili <code>var</code> &lsquo;hoisted&rsquo; vengono
 inizializzate a <code>undefined</code>, a differenza che per le funzioni che sono immediatamente utilizzabili.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">smartAnimal</span>); <span style="color:#75715e">// undefined
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">smartAnimal</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;horse&#39;</span>;
-
-<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">smartAnimal</span>); <span style="color:#75715e">// horse
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">dumbAnimal</span>); <span style="color:#75715e">// reference error: dumbAnimal is not defined
-</span></code></pre></div><p>In questo esempio la dichiarazione della variabile <code>smartAnimal</code> viene spostata all’inizio dello
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">smartAnimal</span>); <span style="color:#75715e">// undefined
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">smartAnimal</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;horse&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">smartAnimal</span>); <span style="color:#75715e">// horse
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">dumbAnimal</span>); <span style="color:#75715e">// reference error: dumbAnimal is not defined
+</span></span></span></code></pre></div><p>In questo esempio la dichiarazione della variabile <code>smartAnimal</code> viene spostata all’inizio dello
 <em>scope</em>. La chiamata da parte di <code>console.log</code> infatti trova una variabile con quel nome ma ad essa
 è stato assegnato il valore <code>undefined</code>; subito dopo viene effettuata l’assegnazione di un valore
 (&lsquo;horse&rsquo;) alla variabile; la successiva chiamata da parte di <code>console.log</code> dimostra che adesso la
@@ -249,17 +251,17 @@ variabile è inizializzata ad un valore.</p>
 solleva un errore.</p>
 <p>Una cosa interessante (ma del tutto conseguente a quanto abbiamo visto finora) avviene se proviamo
 ad utilizzare una funzione assegnata ad una variabile dichiarata con <code>var</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">getFruit</span>(); <span style="color:#75715e">// TypeError: getFruit is not a function
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">getCity</span>(); <span style="color:#75715e">// NewYork
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">getFruit</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> () {
-	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Here you are an orange&#39;</span>);
-};
-
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getCity</span>() {
-	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;New York&#39;</span>);
-}
-</code></pre></div><p>In questo caso la dichiarazione di <code>getFruit</code> viene spostata all’inizio dello <em>scope</em>, e quindi è
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">getFruit</span>(); <span style="color:#75715e">// TypeError: getFruit is not a function
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">getCity</span>(); <span style="color:#75715e">// NewYork
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">getFruit</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Here you are an orange&#39;</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getCity</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;New York&#39;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In questo caso la dichiarazione di <code>getFruit</code> viene spostata all’inizio dello <em>scope</em>, e quindi è
 utilizzabile; ma essendo una dichiarazione fatta con <code>var</code> il compilatore la inizializza a
 <code>undefined</code>. Questo è il motivo per cui viene restituito un <code>TypeError</code>: il compilatore trova una
 variabile <code>getFruit</code> ma non la riconosce come una funzione. Se invece avessimo dichiarato <code>getFruit</code>
@@ -267,20 +269,20 @@ direttamente come funzione il compilatore avrebbe immediatamente (come abbiamo v
 precedente) inizializzato la variabile &lsquo;sollevata&rsquo; a funzione, e la chiamata avrebbe dato il
 risultato corretto (come avviene per la chiamata a <code>getCity</code>).</p>
 <p>A questo punto il meccanismo di <em>hoisting</em> mostrato nel codice seguente è chiaro:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">getFruit</span>); <span style="color:#75715e">// undefined
-</span><span style="color:#75715e"></span>
-<span style="color:#a6e22e">getCity</span>(); <span style="color:#75715e">// NewYork
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">getFruit</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> () {
-	<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;Here you are an orange&#39;</span>;
-};
-
-<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">getFruit</span>()); <span style="color:#75715e">// Here you are an orange
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getCity</span>() {
-	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;New York&#39;</span>);
-}
-</code></pre></div><p><code>getFruit</code> viene dichiarata alla riga 5 con <code>var</code>; viene quindi sollevata all&rsquo;inizio dello <em>scope</em> e
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">getFruit</span>); <span style="color:#75715e">// undefined
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">getCity</span>(); <span style="color:#75715e">// NewYork
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">getFruit</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;Here you are an orange&#39;</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">getFruit</span>()); <span style="color:#75715e">// Here you are an orange
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getCity</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;New York&#39;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>getFruit</code> viene dichiarata alla riga 5 con <code>var</code>; viene quindi sollevata all&rsquo;inizio dello <em>scope</em> e
 inizializzata a <code>undefined</code>, e la prima riga del codice lo conferma. Alla riga 5 alla variabile
 <code>getFruit</code> viene assegnata una funzione, e infatti adesso l&rsquo;istruzione <code>console.log</code> alla riga 9,
 pur uguale a quella alla riga 1, restituisce la stringa corretta. La chiamata a <code>getCity</code> alla riga
@@ -306,21 +308,21 @@ un effetto praticamente nullo; le variabili <code>let</code> o <code>const</code
 risultandone altrimenti la restituzione di un errore da parte del compilatore.</li>
 </ol>
 <p>Approfondiamo i primi due punti:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">smartAnimal</span>);
-<span style="color:#75715e">// ReferenceError: Cannot access &#39;smartAnimal&#39; before initialization
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">smartAnimal</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;dog&#39;</span>;
-</code></pre></div><p>In questo caso il compilatore JavaScript restituisce un errore in quanto la variabile &lsquo;smartAnimal&rsquo;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">smartAnimal</span>);
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ReferenceError: Cannot access &#39;smartAnimal&#39; before initialization
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">smartAnimal</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;dog&#39;</span>;
+</span></span></code></pre></div><p>In questo caso il compilatore JavaScript restituisce un errore in quanto la variabile &lsquo;smartAnimal&rsquo;
 non è stata ancora inizializzata; si badi: il compilatore <em>sa</em> che la variabile esiste all&rsquo;interno
 dello <em>scope</em>, ma non la considera accessibile in quanto non ancora inizializzata. Proviamo allora a
 inizializzarla prima di usarla:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JavaScript" data-lang="JavaScript"><span style="color:#a6e22e">smartAnimal</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;dog&#39;</span>;
-<span style="color:#75715e">// ReferenceError: Cannot access &#39;smartAnimal&#39; before initialization
-</span><span style="color:#75715e"></span>
-<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">smartAnimal</span>);
-
-<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">smartAnimal</span>;
-</code></pre></div><p>Ma anche qui viene restituito lo stesso errore, e proprio nel momento in cui si cerca di
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#a6e22e">smartAnimal</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;dog&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ReferenceError: Cannot access &#39;smartAnimal&#39; before initialization
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">smartAnimal</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">smartAnimal</span>;
+</span></span></code></pre></div><p>Ma anche qui viene restituito lo stesso errore, e proprio nel momento in cui si cerca di
 inizializzare la variabile con la stringa &lsquo;dog&rsquo;.</p>
 <h3 id="la-tdz">La TDZ</h3>
 <p>Il punto è che le variabili <code>let</code> e <code>const</code> vengono considerate &lsquo;disponibili&rsquo; e &lsquo;accessibili&rsquo; da
@@ -328,26 +330,26 @@ parte del compilatore solo nel momento in cui vengono formalmente dichiarate con
 o <code>const</code>. In altre parole le variabili <code>let</code> e <code>const</code> vengono &lsquo;sollevate&rsquo; all&rsquo;inizio dello <em>scope</em>
 in cui sono create, e perciò considerate <em>esistenti</em>, ma diventano anche <em>accessibili</em> solo nel
 momento in cui vengono formalmente dichiarate. La finestra temporale in cui una variabile <code>let</code> o
-<code>const</code> è &lsquo;esistente&rsquo; ma non &lsquo;accessibile&rsquo; viene chiamata <em>Temporal Death Zone</em> (TDZ).</p>
+<code>const</code> è &rsquo;esistente&rsquo; ma non &lsquo;accessibile&rsquo; viene chiamata <em>Temporal Death Zone</em> (TDZ).</p>
 <p>Vediamo il codice:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JavaScript" data-lang="JavaScript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">bigAnimal</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;elephant&#39;</span>;
-
-{
-	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bigAnimal</span>);
-	<span style="color:#75715e">// ReferenceError: Cannot access &#39;bigAnimal&#39; before initialization
-</span><span style="color:#75715e"></span>
-	<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">bigAnimal</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;whale&#39;</span>;
-}
-</code></pre></div><p>In questo caso la variabile <code>bigAnimal</code> viene inizializzata all&rsquo;inizio del programma con la stringa
-&lsquo;elephant&rsquo;; ciononostante viene sollevato un errore nel momento in cui si cerca di accedervi.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-JavaScript" data-lang="JavaScript"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">bigAnimal</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;elephant&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">bigAnimal</span>);
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ReferenceError: Cannot access &#39;bigAnimal&#39; before initialization
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">bigAnimal</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;whale&#39;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In questo caso la variabile <code>bigAnimal</code> viene inizializzata all&rsquo;inizio del programma con la stringa
+&rsquo;elephant&rsquo;; ciononostante viene sollevato un errore nel momento in cui si cerca di accedervi.</p>
 <p>Il punto è che all&rsquo;interno del blocco c&rsquo;è un&rsquo;altra variabile <code>bigAnimal</code> che viene dichiarata con
 <code>let</code>, che pertanto viene &lsquo;sollevata&rsquo; all&rsquo;inizio del blocco corrente <em>ma non inizializzata</em>; questa
-nuova variabile quindi &lsquo;eclissa&rsquo; la prima agli occhi del compilatore il quale giustamente ci
+nuova variabile quindi &rsquo;eclissa&rsquo; la prima agli occhi del compilatore il quale giustamente ci
 notifica di non poter accedere a <code>bigAnimal</code> in quanto non ancora inizializzata.</p>
 <p>Si tratta di un errore dovuto proprio alla presenza di una TDZ tra il momento in cui una variabile è
 semplicemente <em>esistente</em> e il momento in cui è invece effettivamente <em>accessibile</em>.</p>
 <h2 id="conclusioni">Conclusioni</h2>
-<p>L'<em>hoisting</em> è un comportamento complesso del compilatore JavaScript, reso ancora più criptico dal
+<p>L&rsquo;<em>hoisting</em> è un comportamento complesso del compilatore JavaScript, reso ancora più criptico dal
 fatto di gestire in modo molto diverso le variabili e le funzioni a seconda di come e quando vengono
 dichiarate. La <em>Temporal Death Zone</em>, conseguenza diretta del meccanismo di <em>hoisting</em>, pure incide
 in modo molto diverso sulla gestione dei vari tipi di variabile. Tutta questa complessità e

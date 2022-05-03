@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Moduli | Sam Sahara</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="JavaScript programmazione avanzata, scope, closures, modules">
+    
+    <meta name="generator" content="Hugo 0.98.0" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.abe0b1c07d5e33565b0f9b998a7b1b5228b709f36af363e2766bc8035f2237b7.css" >
+
+
+
+
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Moduli" />
+<meta property="og:description" content="I moduli sono il principale strumento per la strutturazione e la organizzazione del codice; il modulo consente di applicare il principio di incapsulazione di dati e procedure che è così importante nella programmazione contemporanea, non solo in JavaScript. Per mezzo della incapsulazione non solo si raccolgono dati e codice logicamente collegati in un unica struttura utilizzabile come un unicum (ad esempio si possono raccogliere in un modulo tutte le procedure e i dati relativi all&rsquo;accesso a un database, oppure tutte le procedure relative alla gestione di particolari strutture dati), ma si possono anche nascondere tutti quei dettagli implementativi (variabili, costanti, procedure) di cui è bene evitare la modificabilità all&rsquo;esterno del modulo stesso." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://ThornDuke.github.io/posts/220402-modules/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-05-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-05-02T00:00:00+00:00" /><meta property="og:site_name" content="Sam Sahara" />
+
+<meta itemprop="name" content="Moduli">
+<meta itemprop="description" content="I moduli sono il principale strumento per la strutturazione e la organizzazione del codice; il modulo consente di applicare il principio di incapsulazione di dati e procedure che è così importante nella programmazione contemporanea, non solo in JavaScript. Per mezzo della incapsulazione non solo si raccolgono dati e codice logicamente collegati in un unica struttura utilizzabile come un unicum (ad esempio si possono raccogliere in un modulo tutte le procedure e i dati relativi all&rsquo;accesso a un database, oppure tutte le procedure relative alla gestione di particolari strutture dati), ma si possono anche nascondere tutti quei dettagli implementativi (variabili, costanti, procedure) di cui è bene evitare la modificabilità all&rsquo;esterno del modulo stesso."><meta itemprop="datePublished" content="2022-05-02T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-05-02T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1871">
+<meta itemprop="keywords" content="scope,closure,modules," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Moduli"/>
+<meta name="twitter:description" content="I moduli sono il principale strumento per la strutturazione e la organizzazione del codice; il modulo consente di applicare il principio di incapsulazione di dati e procedure che è così importante nella programmazione contemporanea, non solo in JavaScript. Per mezzo della incapsulazione non solo si raccolgono dati e codice logicamente collegati in un unica struttura utilizzabile come un unicum (ad esempio si possono raccogliere in un modulo tutte le procedure e i dati relativi all&rsquo;accesso a un database, oppure tutte le procedure relative alla gestione di particolari strutture dati), ma si possono anche nascondere tutti quei dettagli implementativi (variabili, costanti, procedure) di cui è bene evitare la modificabilità all&rsquo;esterno del modulo stesso."/>
+
+      
+    
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  
+  
+  <header class="cover bg-top" style="background-image: url('https://ThornDuke.github.io/MargaretHamilton.jpg');">
+    <div class="pb3-m pb6-l bg-black-60">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Sam Sahara
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/about/" title="About pagina">
+              About
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/posts/" title="Articoli pagina">
+              Articoli
+            </a>
+          </li>
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/contact/" title="Contatti pagina">
+              Contatti
+            </a>
+          </li>
+          
+        </ul>
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+      <div class="tc-l pv6 ph3 ph4-ns">
+        
+          <h1 class="f2 f1-l fw2 white-90 mb0 lh-title">Moduli</h1>
+          
+        
+      </div>
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        ARTICOLI
+      </aside>
+      
+
+
+
+
+  <div id="sharing" class="mt3">
+
+    
+    <a href="https://www.facebook.com/sharer.php?u=https://ThornDuke.github.io/posts/220402-modules/" class="facebook no-underline" aria-label="share on Facebook">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M28.765,50.32h6.744V33.998h4.499l0.596-5.624h-5.095  l0.007-2.816c0-1.466,0.14-2.253,2.244-2.253h2.812V17.68h-4.5c-5.405,0-7.307,2.729-7.307,7.317v3.377h-3.369v5.625h3.369V50.32z   M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+
+    </a>
+
+    
+    
+    <a href="https://twitter.com/share?url=https://ThornDuke.github.io/posts/220402-modules/&amp;text=Moduli" class="twitter no-underline" aria-label="share on Twitter">
+      <svg height="32px"  style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/></svg>
+
+    </a>
+
+    
+    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://ThornDuke.github.io/posts/220402-modules/&amp;title=Moduli" class="linkedin no-underline" aria-label="share on LinkedIn">
+      <svg  height="32px"  style="enable-background:new 0 0 65 65;" version="1.1" viewBox="0 0 65 65" width="32px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <path d="M50.837,48.137V36.425c0-6.275-3.35-9.195-7.816-9.195  c-3.604,0-5.219,1.983-6.119,3.374V27.71h-6.79c0.09,1.917,0,20.427,0,20.427h6.79V36.729c0-0.609,0.044-1.219,0.224-1.655  c0.49-1.22,1.607-2.483,3.482-2.483c2.458,0,3.44,1.873,3.44,4.618v10.929H50.837z M22.959,24.922c2.367,0,3.842-1.57,3.842-3.531  c-0.044-2.003-1.475-3.528-3.797-3.528s-3.841,1.524-3.841,3.528c0,1.961,1.474,3.531,3.753,3.531H22.959z M34,64  C17.432,64,4,50.568,4,34C4,17.431,17.432,4,34,4s30,13.431,30,30C64,50.568,50.568,64,34,64z M26.354,48.137V27.71h-6.789v20.427  H26.354z" style="fill-rule:evenodd;clip-rule:evenodd;fill:;"/>
+</svg>
+
+    </a>
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Moduli</h1>
+      
+      <p class="tracked">
+          By <strong>
+          
+              Sergio Spina
+          
+          </strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2022-05-02T00:00:00Z">May 2, 2022</time>
+      
+
+      
+      
+        <span class="f6 mv4 dib tracked"> - 9 minutes read </span>
+        <span class="f6 mv4 dib tracked"> - 1871 words </span>
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>I <em>moduli</em> sono il principale strumento per la strutturazione e la organizzazione del codice; il modulo consente di applicare il principio di <em>incapsulazione</em> di dati e procedure che è così importante nella programmazione contemporanea, non solo in JavaScript. Per mezzo della incapsulazione non solo si raccolgono dati e codice logicamente collegati in un unica struttura utilizzabile come un <em>unicum</em> (ad esempio si possono raccogliere in un modulo tutte le procedure e i dati relativi all&rsquo;accesso a un database, oppure tutte le procedure relative alla gestione di particolari strutture dati), ma si possono anche nascondere tutti quei dettagli implementativi (variabili, costanti, procedure) di cui è bene evitare la modificabilità all&rsquo;esterno del modulo stesso.</p>
+<p>In questo articolo vedremo innanzitutto cosa si intende per <em>modulo</em> in JavaScript, poi i modi differenti nei quali questo concetto viene applicato in Node e in ES.</p>
+<h2 id="cosa-non-è-un-modulo">Cosa NON È un modulo</h2>
+<p>Un <em>modulo</em> è una struttura dati contenente <em>dati</em> (anche chiamati <em>stato</em> del modulo) e procedure (anche chiamati <em>metodi</em>). I metodi devono accedere ai dati per leggerli e modificarli, e i dati devono essere inaccessibili dall&rsquo;esterno del modulo. Se manca anche una sola di queste caratteristiche non siamo più di fronte ad un modulo ma ad un&rsquo;altra struttura dati: il <em>namespace</em> o la <em>struttura dati</em> vera e propria.</p>
+<h3 id="namespace">Namespace</h3>
+<p>Se una struttura contiene solo procedure ma nessun dato cui le procedure accedano in lettura o scrittura non può essere considerata un <em>modulo</em> ma un <em>namespace</em>, una struttura molto semplice e statica, che si limita a mettere a disposizione una serie di metodi logicamente collegati ad un certo scopo. Ad esempio:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">stringUtils</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">reverse</span>(<span style="color:#a6e22e">string</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">string</span>
+</span></span><span style="display:flex;"><span>			.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;&#39;</span>)
+</span></span><span style="display:flex;"><span>			.<span style="color:#a6e22e">reverse</span>()
+</span></span><span style="display:flex;"><span>			.<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#39;&#39;</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">substitute</span>(<span style="color:#a6e22e">string</span>, <span style="color:#a6e22e">char1</span>, <span style="color:#a6e22e">char2</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">string</span>
+</span></span><span style="display:flex;"><span>			.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;&#39;</span>)
+</span></span><span style="display:flex;"><span>			.<span style="color:#a6e22e">map</span>(<span style="color:#66d9ef">char</span> =&gt; <span style="color:#66d9ef">char</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">char1</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">char2</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">char</span>)
+</span></span><span style="display:flex;"><span>			.<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#39;&#39;</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">exclude</span>(<span style="color:#a6e22e">string</span>, <span style="color:#66d9ef">char</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">string</span>
+</span></span><span style="display:flex;"><span>			.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;&#39;</span>)
+</span></span><span style="display:flex;"><span>			.<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">currentChar</span> =&gt; <span style="color:#a6e22e">currentChar</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">char</span>)
+</span></span><span style="display:flex;"><span>			.<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#39;&#39;</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">reverse</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">substitute</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">exclude</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">utils</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">stringUtils</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">utils</span>.<span style="color:#a6e22e">reverse</span>(<span style="color:#e6db74">&#39;ladder&#39;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; reddal
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">utils</span>.<span style="color:#a6e22e">substitute</span>(<span style="color:#e6db74">&#39;stopper&#39;</span>, <span style="color:#e6db74">&#39;t&#39;</span>, <span style="color:#e6db74">&#39;l&#39;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; slopper
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">utils</span>.<span style="color:#a6e22e">exclude</span>(<span style="color:#e6db74">&#39;london&#39;</span>, <span style="color:#e6db74">&#39;n&#39;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; lodo
+</span></span></span></code></pre></div><p>In questo esempio <code>stringUtils</code> è un semplice <em>namespace</em>, trattandosi di una struttura che si limita a mettere a disposizione una serie di metodi volti a modificare in vario modo le stringhe che vengono passate come parametri.</p>
+<h3 id="struttura-dati">Struttura dati</h3>
+<p>Se una struttura contiene procedure e dati cui le procedure accedono, ma i dati non sono nascosti all&rsquo;interno della struttura, non vale la pena di parlare di <em>modulo</em>, trattandosi invece di una semplice <em>struttura dati</em>. Vediamo un esempio:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">animalVerses</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">animals</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;chicken&#39;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;cluck&#39;</span>
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;zebra&#39;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;neigh&#39;</span>
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;penguin&#39;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;chirp&#39;</span>
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dolphin&#39;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;whistle&#39;</span>
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>	],
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">getVerse</span>(<span style="color:#a6e22e">id</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animal</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">animals</span>.<span style="color:#a6e22e">find</span>(<span style="color:#a6e22e">a</span> =&gt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">id</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">animal</span>.<span style="color:#a6e22e">verse</span>
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">setVerse</span>(<span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">verse</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animal</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">animals</span>.<span style="color:#a6e22e">find</span>(<span style="color:#a6e22e">a</span> =&gt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">id</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">newAnimal</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>			...<span style="color:#a6e22e">animal</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">verse</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">animals</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">animals</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">a</span> =&gt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">!==</span> <span style="color:#a6e22e">id</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">newAnimal</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">animalVerses</span>.<span style="color:#a6e22e">animals</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; ... come ci si aspetta
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">animalVerses</span>.<span style="color:#a6e22e">getVerse</span>(<span style="color:#ae81ff">3</span>))
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; chirp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">animalVerses</span>.<span style="color:#a6e22e">setVerse</span>(<span style="color:#ae81ff">4</span>, <span style="color:#e6db74">&#39;bark&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">animalVerses</span>.<span style="color:#a6e22e">animals</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; [ ..., { id: 4, name: &#39;dolphin&#39;, verse: &#39;bark&#39; }, ...]
+</span></span></span></code></pre></div><p>Qui <code>animalVerses</code> è costituito sia da dati (l&rsquo;array <code>animals</code>), sia da metodi che accedono a quei dati in lettura e in scrittura; ma, come si vede dal primo <code>console.log</code> in coda all&rsquo;esempio, i dati non sono nascosti all&rsquo;interno della struttura dati, sono accedibili dall&rsquo;esterno sia in lettura che in scrittura. Quindi <code>animalVerses</code> non è un <em>modulo</em>.</p>
+<h2 id="il-modulo-classico">Il modulo &ldquo;classico&rdquo;</h2>
+<p>Dunque un <em>modulo</em> deve contenere dati (lo <em>stato</em> del modulo), i dati devono essere nascosti all&rsquo;interno del modulo, e deve contenere le procedure (o <em>metodi</em>) per accedere a quei dati. Vediamo un esempio:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">animalVerses</span> <span style="color:#f92672">=</span> (<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">manageAnimals</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animals</span> <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;chicken&#39;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;cluck&#39;</span>
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;zebra&#39;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;neigh&#39;</span>
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;penguin&#39;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;chirp&#39;</span>
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dolphin&#39;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;whistle&#39;</span>
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>	];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getVerse</span>(<span style="color:#a6e22e">id</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animal</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">animals</span>.<span style="color:#a6e22e">find</span>(<span style="color:#a6e22e">a</span> =&gt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">id</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">animal</span>.<span style="color:#a6e22e">verse</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setVerse</span>(<span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">verse</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animal</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">animals</span>.<span style="color:#a6e22e">find</span>(<span style="color:#a6e22e">a</span> =&gt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">id</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">newAnimal</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>			...<span style="color:#a6e22e">animal</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">verse</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">animals</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">animals</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">a</span> =&gt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">!==</span> <span style="color:#a6e22e">id</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">newAnimal</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">printAnimals</span>() {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">animals</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">publicInterface</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">getVerse</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">setVerse</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">printAnimals</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">publicInterface</span>
+</span></span><span style="display:flex;"><span>})()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">animalVerses</span>.<span style="color:#a6e22e">getVerse</span>(<span style="color:#ae81ff">3</span>))
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; chirp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">animalVerses</span>.<span style="color:#a6e22e">setVerse</span>(<span style="color:#ae81ff">4</span>, <span style="color:#e6db74">&#39;bark&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">animalVerses</span>.<span style="color:#a6e22e">printAnimals</span>()
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; [ ..., { id: 4, name: &#39;dolphin&#39;, verse: &#39;bark&#39; }, ...]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">animalVerses</span>.<span style="color:#a6e22e">animals</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; undefined
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">animalVerses</span>.<span style="color:#a6e22e">printAnimals</span>()
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; ... come ci si aspetta
+</span></span></span></code></pre></div><p>Il modulo vero e proprio è <code>manageAnimals</code> che, con la tecnica del <code>IIFE</code> (Immediately Invoked Function Expression), assegna alla variabile <code>animalVerses</code> l&rsquo;oggetto <code>publicInterface</code>. Quest&rsquo;ultimo oggetto espone l&rsquo;<em>interfaccia pubblica</em> del modulo, ossia i metodi che accedono allo stato del modulo (l&rsquo;oggetto <code>animals</code>) in lettura e in scrittura.</p>
+<p>Gli ultimi due <code>console.log</code> dell&rsquo;esempio evidenziano il fatto che lo stato del modulo è <em>nascosto</em> e inaccessibile dall&rsquo;esterno se si usa un sistema diretto (primo <code>log</code>) mentre è leggibile per mezzo di un apposito metodo facente parte dell&rsquo;interfaccia pubblica.</p>
+<p>Ovviamente si può definire un modulo senza usare un <code>IIFE</code> e utilizzare istanze del modulo definite <em>ad hoc</em>, ad esempio:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">manageAnimals</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animals</span> <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;chicken&#39;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;cluck&#39;</span>
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;zebra&#39;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;neigh&#39;</span>
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;penguin&#39;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;chirp&#39;</span>
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dolphin&#39;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;whistle&#39;</span>
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>	];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getVerse</span>(<span style="color:#a6e22e">id</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animal</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">animals</span>.<span style="color:#a6e22e">find</span>(<span style="color:#a6e22e">a</span> =&gt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">id</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">animal</span>.<span style="color:#a6e22e">verse</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setVerse</span>(<span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">verse</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animal</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">animals</span>.<span style="color:#a6e22e">find</span>(<span style="color:#a6e22e">a</span> =&gt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">id</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">newAnimal</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>			...<span style="color:#a6e22e">animal</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">verse</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">animals</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">animals</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">a</span> =&gt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">!==</span> <span style="color:#a6e22e">id</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">newAnimal</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">printAnimals</span>() {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">animals</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">publicInterface</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">getVerse</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">setVerse</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">printAnimals</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">publicInterface</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animalVerses_A</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">manageAnimals</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animalVerses_B</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">manageAnimals</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">animalVerses_A</span>.<span style="color:#a6e22e">getVerse</span>(<span style="color:#ae81ff">3</span>))
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; chirp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">animalVerses_B</span>.<span style="color:#a6e22e">getVerse</span>(<span style="color:#ae81ff">4</span>))
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; whistle
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">animalVerses_A</span>.<span style="color:#a6e22e">setVerse</span>(<span style="color:#ae81ff">4</span>, <span style="color:#e6db74">&#39;bark&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">animalVerses_B</span>.<span style="color:#a6e22e">setVerse</span>(<span style="color:#ae81ff">4</span>, <span style="color:#e6db74">&#39;buzz&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">animalVerses_A</span>.<span style="color:#a6e22e">printAnimals</span>()
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; [ ..., { id: 4, name: &#39;dolphin&#39;, verse: &#39;bark&#39; }, ...]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">animalVerses_B</span>.<span style="color:#a6e22e">printAnimals</span>()
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; [ ..., { id: 4, name: &#39;dolphin&#39;, verse: &#39;buzz&#39; }, ...]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">animalVerses_A</span>.<span style="color:#a6e22e">animals</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; undefined
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">animalVerses_B</span>.<span style="color:#a6e22e">animals</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; undefined
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">animalVerses_A</span>.<span style="color:#a6e22e">printAnimals</span>()
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">animalVerses_B</span>.<span style="color:#a6e22e">printAnimals</span>()
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; ... come ci si aspetta
+</span></span></span></code></pre></div><p>Qui viene definito il modulo <code>manageAnimals</code> con il quale vengono definite le due diverse istanze <code>animalVerses_A</code> e <code>animalVerses_B</code>, ognuna delle quali ha un proprio e diverso stato <code>animals</code> che infatti, come si vede dai vari <code>console.log</code>, vengono gestiti in modo diverso.</p>
+<h2 id="il-modulo-in-node">Il modulo in Node</h2>
+<p>Sia in Node che in ES il concetto di modulo è collegato a quello di <code>file</code>: un file contiene un solo modulo, ogni modulo è contenuto in un suo proprio file.</p>
+<p>Possiamo trasformare il modulo dell&rsquo;esempio precedente nel formato Node nel modo seguente:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// === file animalVerses.js =======
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animals</span> <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;chicken&#39;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;cluck&#39;</span>
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;zebra&#39;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;neigh&#39;</span>
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;penguin&#39;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;chirp&#39;</span>
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dolphin&#39;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;whistle&#39;</span>
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getVerse</span>(<span style="color:#a6e22e">id</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animal</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">animals</span>.<span style="color:#a6e22e">find</span>(<span style="color:#a6e22e">a</span> =&gt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">id</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">animal</span>.<span style="color:#a6e22e">verse</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setVerse</span>(<span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">verse</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animal</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">animals</span>.<span style="color:#a6e22e">find</span>(<span style="color:#a6e22e">a</span> =&gt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">id</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">newAnimal</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>		...<span style="color:#a6e22e">animal</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">verse</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">animals</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">animals</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">a</span> =&gt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">!==</span> <span style="color:#a6e22e">id</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">newAnimal</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">printAnimals</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">animals</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">getVerse</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">setVerse</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">printAnimals</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// === end of file animalVerses.js =======
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// === file index.js =======
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">myAnimalVerses</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;path/to/animalVerses.js&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">myAnimalVerses</span>.<span style="color:#a6e22e">getVerse</span>(<span style="color:#ae81ff">3</span>))
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; chirp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">myAnimalVerses</span>.<span style="color:#a6e22e">setVerse</span>(<span style="color:#ae81ff">4</span>, <span style="color:#e6db74">&#39;bark&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">myAnimalVerses</span>.<span style="color:#a6e22e">printAnimals</span>()
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; [ ..., { id: 4, name: &#39;dolphin&#39;, verse: &#39;bark&#39; }, ...]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">myAnimalVerses</span>.<span style="color:#a6e22e">animals</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; undefined
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">myAnimalVerses</span>.<span style="color:#a6e22e">printAnimals</span>()
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; ... come ci si aspetta
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// === end of file index.js =======
+</span></span></span></code></pre></div><p>Il file <code>animalVerses.js</code> definisce i metodi di accesso ai dati in <code>animals</code>. Il modulo Node espone un oggetto vuoto (<code>module.exports</code>) al quale vengono assegnati come campi i metodi e i dati del modulo che costituiscono l&rsquo;interfaccia pubblica <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. Per creare una istanza del modulo si usa la sintassi <code>const myAnimalVerses = require('path/to/animalVerses.js')</code> che ha l&rsquo;effetto di assegnare a <code>myAnimalVerses</code> il contenuto dell&rsquo;interfaccia pubblica esposta dal modulo <code>animalVerses.js</code>.</p>
+<p>Il metodo <code>require</code> importa <em>tutto</em> il contenuto dell&rsquo;interfaccia pubblica del modulo. È possibile però importare solo parte dell&rsquo;interfaccia con uno dei seguenti procedimenti:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">printAnimals</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;path/to/animalVerses.js&#39;</span>).<span style="color:#a6e22e">printAnimals</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// oppure
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">printAnimals</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;path/to/animalVerses.js&#39;</span>)
+</span></span></code></pre></div><p>Infine, i moduli contenuti all&rsquo;interno della directory <code>node_modules</code> possono essere referenziati con la sintassi priva della indicazione del percorso del file, ad es: <code>require('animalVerses')</code>.</p>
+<h2 id="il-modulo-in-es">Il modulo in ES</h2>
+<p>Il modulo in ES è molto simile a quello usato in Node: anche in ES ogni modulo è contenuto in un suo proprio file e la sintassi di definizione di dati e metodi è praticamente identica.</p>
+<p>Ma al posto dell&rsquo;oggetto <code>module.exports</code> si usa la <em>keyword</em> <code>export</code> e al posto di <code>require()</code> si usa la <em>keyword</em> <code>import</code>. Possiamo quindi riscrivere il nostro modulo in formato ES nel seguente modo:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// === file animalVerses.js =======
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animals</span> <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;chicken&#39;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;cluck&#39;</span>
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;zebra&#39;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;neigh&#39;</span>
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;penguin&#39;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;chirp&#39;</span>
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">4</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dolphin&#39;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;whistle&#39;</span>
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getVerse</span>(<span style="color:#a6e22e">id</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animal</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">animals</span>.<span style="color:#a6e22e">find</span>(<span style="color:#a6e22e">a</span> =&gt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">id</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">animal</span>.<span style="color:#a6e22e">verse</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setVerse</span>(<span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">verse</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animal</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">animals</span>.<span style="color:#a6e22e">find</span>(<span style="color:#a6e22e">a</span> =&gt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">id</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">newAnimal</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>		...<span style="color:#a6e22e">animal</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">verse</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">verse</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">animals</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">animals</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">a</span> =&gt; <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">!==</span> <span style="color:#a6e22e">id</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">newAnimal</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">printAnimals</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">animals</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">getVerse</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">setVerse</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">printAnimals</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// === end of file animalVerses.js =======
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// === file index.js =======
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">myAnimalVerses</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;path/to/animalVerses.js&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">myAnimalVerses</span>.<span style="color:#a6e22e">getVerse</span>(<span style="color:#ae81ff">3</span>))
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; chirp
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">myAnimalVerses</span>.<span style="color:#a6e22e">setVerse</span>(<span style="color:#ae81ff">4</span>, <span style="color:#e6db74">&#39;bark&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">myAnimalVerses</span>.<span style="color:#a6e22e">printAnimals</span>()
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; [ ..., { id: 4, name: &#39;dolphin&#39;, verse: &#39;bark&#39; }, ...]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">myAnimalVerses</span>.<span style="color:#a6e22e">animals</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; undefined
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">myAnimalVerses</span>.<span style="color:#a6e22e">printAnimals</span>()
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ===&gt; ... come ci si aspetta
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// === end of file index.js =======
+</span></span></span></code></pre></div><p>Come si vede, le differenze rispetto al modulo in formato Node sono davvero pochissime.</p>
+<p>Anche in ES è possibile importare solo alcuni degli elementi dell&rsquo;interfaccia (invece di importarli tutti, come è il comportamento di default) con la sintassi</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">getVerse</span>, <span style="color:#a6e22e">printAnimals</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;path/to/animalVerses.js&#39;</span>
+</span></span></code></pre></div><p>È possibile indicare nel modulo uno dei dati o metodi dell&rsquo;interfaccia come <code>export default</code>; in questo caso la sintassi per l&rsquo;importazione è priva delle parentesi graffe:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// === file animalVerses.js =======
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getVerse</span>(<span style="color:#a6e22e">id</span>) {<span style="color:#75715e">/* ... etc. */</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">getVerse</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// === file index.js =======
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">getVerse</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;path/to/animalVerses.js&#39;</span>
+</span></span></code></pre></div><div style="display: flex; flex-direction: row; justify-content: right; margin-top: 2em">
+	<div style="width: 75%">
+		<hr style="color: #fcfcfc" />
+		<p style="font-size: 80%; font-style: italic; text-align: right">Nel banner: Margaret Hamilton. Ha scritto parte del codice che girava sui computer di bordo della missione Apollo 11. In una famosa fotografia la si vede reggere la pila di fogli contenenti il listato (alta quanto lei) perchè non cada. Il codice era scritto in assembly, a mano su fogli di carta, e successivamente trasformato in schede perforate.</p>
+	</div>
+</div>
+
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>In realtà la questione è un po&rsquo; più complessa: l&rsquo;istruzione nell&rsquo;esempio <em>sostituisce</em> l&rsquo;oggetto vuoto offerto da <code>module.exports</code> con il diverso oggetto contenente i riferimenti ai metodi del modulo. Alcuni autori ritengono che questo procedimento possa dar luogo a problemi in alcuni casi limite e propongono metodi alternativi, ad esempio: <code>Object.assign(module.exports, {/* ... exports */})</code>, oppure <code>module.exports.method1 = method1; module.exports.method2 = method2; /* ... etc. */</code>. Ho usato il procedimento nel testo sia perchè è comunque molto usato nella programmazione contemporanea, sia perchè è un meccanismo facilmente comprensibile e memorizzabile.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+<ul class="pa0">
+  
+   <li class="list">
+     <a href="/tags/scope" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">scope</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/closure" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">closure</a>
+   </li>
+  
+   <li class="list">
+     <a href="/tags/modules" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">modules</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l"><div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Indice</p>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#cosa-non-è-un-modulo">Cosa NON È un modulo</a>
+      <ul>
+        <li><a href="#namespace">Namespace</a></li>
+        <li><a href="#struttura-dati">Struttura dati</a></li>
+      </ul>
+    </li>
+    <li><a href="#il-modulo-classico">Il modulo &ldquo;classico&rdquo;</a></li>
+    <li><a href="#il-modulo-in-node">Il modulo in Node</a></li>
+    <li><a href="#il-modulo-in-es">Il modulo in ES</a></li>
+  </ul>
+</nav>
+  </div>
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Correlati</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/posts/211205-hoisting/">Hoisting</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/211114-lexicalscope/">Il Lexical Scope</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/posts/211107-this/">Cosa è &#34;this&#34; in una funzione JavaScript?</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://ThornDuke.github.io/" >
+    &copy;  Sam Sahara 2022 
+  </a>
+    <div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

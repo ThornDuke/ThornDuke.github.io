@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>closure on Sam Sahara</title>
+    <link>https://ThornDuke.github.io/tags/closure/</link>
+    <description>Recent content in closure on Sam Sahara</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>it</language>
+    <lastBuildDate>Mon, 02 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://ThornDuke.github.io/tags/closure/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Moduli</title>
+      <link>https://ThornDuke.github.io/posts/220402-modules/</link>
+      <pubDate>Mon, 02 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ThornDuke.github.io/posts/220402-modules/</guid>
+      <description>I moduli sono il principale strumento per la strutturazione e la organizzazione del codice; il modulo consente di applicare il principio di incapsulazione di dati e procedure che è così importante nella programmazione contemporanea, non solo in JavaScript. Per mezzo della incapsulazione non solo si raccolgono dati e codice logicamente collegati in un unica struttura utilizzabile come un unicum (ad esempio si possono raccogliere in un modulo tutte le procedure e i dati relativi all&amp;rsquo;accesso a un database, oppure tutte le procedure relative alla gestione di particolari strutture dati), ma si possono anche nascondere tutti quei dettagli implementativi (variabili, costanti, procedure) di cui è bene evitare la modificabilità all&amp;rsquo;esterno del modulo stesso.</description>
+    </item>
+    
+  </channel>
+</rss>

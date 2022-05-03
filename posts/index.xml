@@ -8,6 +8,15 @@
     <language>it</language>
     <lastBuildDate>Wed, 10 Nov 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ThornDuke.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Moduli</title>
+      <link>https://ThornDuke.github.io/posts/220402-modules/</link>
+      <pubDate>Mon, 02 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ThornDuke.github.io/posts/220402-modules/</guid>
+      <description>I moduli sono il principale strumento per la strutturazione e la organizzazione del codice; il modulo consente di applicare il principio di incapsulazione di dati e procedure che è così importante nella programmazione contemporanea, non solo in JavaScript. Per mezzo della incapsulazione non solo si raccolgono dati e codice logicamente collegati in un unica struttura utilizzabile come un unicum (ad esempio si possono raccogliere in un modulo tutte le procedure e i dati relativi all&amp;rsquo;accesso a un database, oppure tutte le procedure relative alla gestione di particolari strutture dati), ma si possono anche nascondere tutti quei dettagli implementativi (variabili, costanti, procedure) di cui è bene evitare la modificabilità all&amp;rsquo;esterno del modulo stesso.</description>
+    </item>
+    
+    <item>
       <title>Closures</title>
       <link>https://ThornDuke.github.io/posts/220206-closures/</link>
       <pubDate>Sun, 06 Feb 2022 00:00:00 +0000</pubDate>
@@ -45,7 +54,7 @@ Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della ese
       <guid>https://ThornDuke.github.io/posts/211107-this/</guid>
       <description>Il problema Uno dei concetti più ripetuti e più accettati tra i programmatori JavaScript è che this è un costrutto difficile da capire, quasi esoterico. E in effetti i malintesi diffusi su questo argomento sono tanti: che this, chiamato all&amp;rsquo;interno di funzione, si riferisca alla funzione stessa, oppure che si riferisca alla istanza cui la funzione-metodo appartiene.
 Cerchiamo di capirci qualcosa in più.
-L&amp;rsquo;ambito e il contesto L&#39;ambito di una funzione JavaScript (lo scope) è, da un punto di vista esteriore, tutto quello che c&amp;rsquo;è tra una parentesi graffa aperta e una chiusa.</description>
+L&amp;rsquo;ambito e il contesto L&amp;rsquo;ambito di una funzione JavaScript (lo scope) è, da un punto di vista esteriore, tutto quello che c&amp;rsquo;è tra una parentesi graffa aperta e una chiusa.</description>
     </item>
     
   </channel>

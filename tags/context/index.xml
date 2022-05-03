@@ -15,7 +15,7 @@
       <guid>https://ThornDuke.github.io/posts/211107-this/</guid>
       <description>Il problema Uno dei concetti più ripetuti e più accettati tra i programmatori JavaScript è che this è un costrutto difficile da capire, quasi esoterico. E in effetti i malintesi diffusi su questo argomento sono tanti: che this, chiamato all&amp;rsquo;interno di funzione, si riferisca alla funzione stessa, oppure che si riferisca alla istanza cui la funzione-metodo appartiene.
 Cerchiamo di capirci qualcosa in più.
-L&amp;rsquo;ambito e il contesto L&#39;ambito di una funzione JavaScript (lo scope) è, da un punto di vista esteriore, tutto quello che c&amp;rsquo;è tra una parentesi graffa aperta e una chiusa.</description>
+L&amp;rsquo;ambito e il contesto L&amp;rsquo;ambito di una funzione JavaScript (lo scope) è, da un punto di vista esteriore, tutto quello che c&amp;rsquo;è tra una parentesi graffa aperta e una chiusa.</description>
     </item>
     
   </channel>

@@ -8,14 +8,14 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="JavaScript programmazione avanzata, closures, scope">
     
-    <meta name="generator" content="Hugo 0.89.2" />
+    <meta name="generator" content="Hugo 0.98.0" />
     
     
       <META NAME="ROBOTS" CONTENT="INDEX, FOLLOW">
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.abe0b1c07d5e33565b0f9b998a7b1b5228b709f36af363e2766bc8035f2237b7.css" >
 
 
 
@@ -42,10 +42,12 @@
 <meta name="twitter:title" content="Closures"/>
 <meta name="twitter:description" content="Le closures sono una caratteristica importantissima, addirittura fondamentale nel moderno JavaScript; il concetto di closures attiene esclusivamente alle funzioni (non ci sono closures senza funzioni), e descrive il fenomeno per il quale alcune variabili, dichiarate all&rsquo;interno di funzioni, sono accessibili anche all&rsquo;esterno della funzione nella quale sono dichiarate. Questo concetto sembra essere controintuitivo: in fondo una variabile è visibile solo all&rsquo;interno dello scope nel quale è dichiarata, e una funzione apre e chiude un proprio scope."/>
 
+      
+    
 	
   </head>
 
-  <body class="ma0 avenir bg-near-white">
+  <body class="ma0 avenir bg-near-white production">
 
     
    
@@ -189,28 +191,28 @@ essere possibile che una variabile dichiarata all&rsquo;interno di una funzione 
 all&rsquo;esterno della funzione stessa?</p>
 <h2 id="una-funzione-può-restituire-una-funzione">Una funzione può restituire una funzione</h2>
 <p>Vediamo un esempio, utile anche per osservare in azione il meccanismo delle <em>closures</em>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getAnimal</span>(<span style="color:#a6e22e">animalId</span>) {
-	<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animals</span> <span style="color:#f92672">=</span> {
-		<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;wolf&#39;</span>,
-		<span style="color:#ae81ff">2</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;horse&#39;</span>,
-		<span style="color:#ae81ff">3</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;chicken&#39;</span>,
-		<span style="color:#ae81ff">4</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dog&#39;</span>,
-		<span style="color:#ae81ff">5</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;octopus&#39;</span>,
-	};
-
-	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setVerse</span>(<span style="color:#a6e22e">verse</span>) {
-		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">animals</span>[<span style="color:#a6e22e">animalId</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74"> says &#39;</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">verse</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;`</span>;
-	};
-}
-
-<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">whatAnimalSays</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getAnimal</span>(<span style="color:#ae81ff">5</span>);
-
-<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">whatAnimalSays</span>(<span style="color:#e6db74">&#39;bloubl&#39;</span>)); <span style="color:#75715e">// octopus says &#39;bloubl&#39;
-</span><span style="color:#75715e"></span>
-<span style="color:#a6e22e">whatAnimalSays</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getAnimal</span>(<span style="color:#ae81ff">3</span>);
-
-<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">whatAnimalSays</span>(<span style="color:#e6db74">&#39;yeeak&#39;</span>)); <span style="color:#75715e">// chicken says &#39;yeeak&#39;
-</span></code></pre></div><p>Vediamo cosa succede: la funzione <code>getAnimal</code> prima dichiara la variabile <code>animals</code>, un oggetto
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getAnimal</span>(<span style="color:#a6e22e">animalId</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animals</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;wolf&#39;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#ae81ff">2</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;horse&#39;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#ae81ff">3</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;chicken&#39;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#ae81ff">4</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dog&#39;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#ae81ff">5</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;octopus&#39;</span>,
+</span></span><span style="display:flex;"><span>	};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setVerse</span>(<span style="color:#a6e22e">verse</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">animals</span>[<span style="color:#a6e22e">animalId</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74"> says &#39;</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">verse</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;`</span>;
+</span></span><span style="display:flex;"><span>	};
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">whatAnimalSays</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getAnimal</span>(<span style="color:#ae81ff">5</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">whatAnimalSays</span>(<span style="color:#e6db74">&#39;bloubl&#39;</span>)); <span style="color:#75715e">// octopus says &#39;bloubl&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">whatAnimalSays</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getAnimal</span>(<span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">whatAnimalSays</span>(<span style="color:#e6db74">&#39;yeeak&#39;</span>)); <span style="color:#75715e">// chicken says &#39;yeeak&#39;
+</span></span></span></code></pre></div><p>Vediamo cosa succede: la funzione <code>getAnimal</code> prima dichiara la variabile <code>animals</code>, un oggetto
 contenente cinque nomi di animali indicizzati da 1 a 5, poi crea e restituisce la funzione
 <code>setVerse</code> che accede alla variabile <code>animals</code> e ne legge un valore per costruire una stringa.</p>
 <p>Il programma prosegue dichiarando la variabile <code>whatAnimalSays</code> che viene inizializzata alla
@@ -224,45 +226,45 @@ funzione <code>getAnimal</code> (creatrice sia di <code>animals</code> che di <c
 controllo di <em>scope</em>.</p>
 <p>Vediamo un altro esempio che mostra il fenomeno dell&rsquo;accesso ad una variabile dichiarata all&rsquo;interno
 di una funzione chiusa.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createColorRandomizer</span>() {
-	<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">colors</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;white&#39;</span>, <span style="color:#e6db74">&#39;red&#39;</span>, <span style="color:#e6db74">&#39;green&#39;</span>, <span style="color:#e6db74">&#39;gray&#39;</span>, <span style="color:#e6db74">&#39;blue&#39;</span>, <span style="color:#e6db74">&#39;yellow&#39;</span>, <span style="color:#e6db74">&#39;black&#39;</span>, <span style="color:#e6db74">&#39;brown&#39;</span>];
-
-	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">chooseColor</span>() {
-		<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#a6e22e">colors</span>.<span style="color:#a6e22e">length</span>);
-		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">colors</span>[<span style="color:#a6e22e">index</span>];
-	};
-}
-
-<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">sprayer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createColorRandomizer</span>();
-
-<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">sprayer</span>()); <span style="color:#75715e">// black
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">sprayer</span>()); <span style="color:#75715e">// blue
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">sprayer</span>()); <span style="color:#75715e">// green
-</span></code></pre></div><p>Come prima, <code>sprayer</code> è una istanza di <code>chooseColor</code>; quest&rsquo;ultima &ldquo;racchiude in se&rdquo; (<em>closure</em>) la
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createColorRandomizer</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">colors</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;white&#39;</span>, <span style="color:#e6db74">&#39;red&#39;</span>, <span style="color:#e6db74">&#39;green&#39;</span>, <span style="color:#e6db74">&#39;gray&#39;</span>, <span style="color:#e6db74">&#39;blue&#39;</span>, <span style="color:#e6db74">&#39;yellow&#39;</span>, <span style="color:#e6db74">&#39;black&#39;</span>, <span style="color:#e6db74">&#39;brown&#39;</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">chooseColor</span>() {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">index</span> <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#a6e22e">colors</span>.<span style="color:#a6e22e">length</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">colors</span>[<span style="color:#a6e22e">index</span>];
+</span></span><span style="display:flex;"><span>	};
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">sprayer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createColorRandomizer</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">sprayer</span>()); <span style="color:#75715e">// black
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">sprayer</span>()); <span style="color:#75715e">// blue
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">sprayer</span>()); <span style="color:#75715e">// green
+</span></span></span></code></pre></div><p>Come prima, <code>sprayer</code> è una istanza di <code>chooseColor</code>; quest&rsquo;ultima &ldquo;racchiude in se&rdquo; (<em>closure</em>) la
 variabile <code>colors</code> e vi accede in lettura anche dal di fuori della funzione <code>createColorRandomizer</code>.</p>
 <h2 id="una-closure-può-anche-scrivere-in-una-variabile">Una closure può anche scrivere in una variabile</h2>
 <p>Finora abbiamo visto che che la <em>closure</em> può accedere alle variabili in lettura; ma nulla impedisce
 che possa accedervi anche in scrittura. L&rsquo;esempio che segue è piuttosto famoso.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createCounter</span>() {
-	<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">counter</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
-
-	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">incrementer</span>() {
-		<span style="color:#a6e22e">counter</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
-		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">counter</span>;
-	};
-}
-
-<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">tickA</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createCounter</span>();
-<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">tickB</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createCounter</span>();
-
-<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">tickA</span>()); <span style="color:#75715e">// 1
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">tickA</span>()); <span style="color:#75715e">// 2
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">tickA</span>()); <span style="color:#75715e">// 3
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">tickA</span>()); <span style="color:#75715e">// 4
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">tickB</span>()); <span style="color:#75715e">// 1
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">tickB</span>()); <span style="color:#75715e">// 2
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">tickB</span>()); <span style="color:#75715e">// 3
-</span></code></pre></div><p>Qui <code>tickA</code> e <code>tickB</code> sono due istanze di <code>incrementer</code>; questa è una funzione che accede alla
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">createCounter</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">counter</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">incrementer</span>() {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">counter</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">counter</span>;
+</span></span><span style="display:flex;"><span>	};
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">tickA</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createCounter</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">tickB</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createCounter</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">tickA</span>()); <span style="color:#75715e">// 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">tickA</span>()); <span style="color:#75715e">// 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">tickA</span>()); <span style="color:#75715e">// 3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">tickA</span>()); <span style="color:#75715e">// 4
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">tickB</span>()); <span style="color:#75715e">// 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">tickB</span>()); <span style="color:#75715e">// 2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">tickB</span>()); <span style="color:#75715e">// 3
+</span></span></span></code></pre></div><p>Qui <code>tickA</code> e <code>tickB</code> sono due istanze di <code>incrementer</code>; questa è una funzione che accede alla
 variabile <code>counter</code>, <em>la incrementa di uno</em> e ne restituisce il valore. Si noti come ogni volta che
 viene chiamata la funzione <code>createCounter</code> venga creata <em>una nuova istanza</em> di <code>counter</code>: <code>tickA</code> e
 <code>tickB</code> non accedono allo stesso <code>counter</code> ma ognuna ad una variabile contatore diversa, come si può
