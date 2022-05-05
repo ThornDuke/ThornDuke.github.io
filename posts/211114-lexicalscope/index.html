@@ -15,7 +15,7 @@
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.abe0b1c07d5e33565b0f9b998a7b1b5228b709f36af363e2766bc8035f2237b7.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
 
 
 
@@ -41,19 +41,17 @@ Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della ese
 Vediamo come funziona.
 Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della esecuzione il codice passa per una fase di vera e propria compilazione, suddivisa in tre sotto-fasi:"><meta itemprop="datePublished" content="2021-11-14T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2021-11-14T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1022">
+<meta itemprop="wordCount" content="1043">
 <meta itemprop="keywords" content="scope," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Il Lexical Scope"/>
 <meta name="twitter:description" content="JavaScript usa un particolare modello per gestire l&rsquo;accesso alle variabili, chiamato lexical scope. È proprio il lexical scope che consente al motore JavaScript di distinguere tra variabili diverse ma con lo stesso nome, riconoscere variabili all&rsquo;interno di funzioni o di cicli for, accedere a variabili globali dall&rsquo;interno di una funzione o di un blocco.
 Vediamo come funziona.
 Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della esecuzione il codice passa per una fase di vera e propria compilazione, suddivisa in tre sotto-fasi:"/>
 
-      
-    
 	
   </head>
 
-  <body class="ma0 avenir bg-near-white production">
+  <body class="ma0 avenir bg-near-white">
 
     
    
@@ -184,7 +182,7 @@ Il compilatore JavaScript JavaScript è un linguaggio compilato. Prima della ese
       
       
         <span class="f6 mv4 dib tracked"> - 5 minutes read </span>
-        <span class="f6 mv4 dib tracked"> - 1022 words </span>
+        <span class="f6 mv4 dib tracked"> - 1043 words </span>
       
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><p>JavaScript usa un particolare modello per gestire l&rsquo;accesso alle variabili, chiamato <strong>lexical
@@ -199,7 +197,7 @@ propria compilazione, suddivisa in tre sotto-fasi:</p>
 <li>
 <p><strong>tokenizing/lexing</strong>: il codice viene suddiviso in cellule indivisibili chiamate <em>tokens</em>,
 ognuna delle quali rappresenta un elemento significativo. Ad esempio, la linea</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animal</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;fox&#39;</span>;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">1</span><span><span style="color:#f00">let</span> animal = <span style="color:#87ceeb">&#39;fox&#39;</span>;
 </span></span></code></pre></div><p>viene suddivisa nei 5 tokens <code>let</code>, <code>animal</code>, <code>=</code>, <code>'fox'</code>, <code>;</code> (il punto e virgola è un token).</p>
 </li>
 <li>
@@ -247,21 +245,21 @@ dichiarazione di variabile neanche lì allora solleva un errore.</p>
 <p>Si noti che il compilatore effettua la ricerca sempre in linea retta e sempre verso <em>scope</em> esterni
 a quello corrente.</p>
 <h2 id="qualche-esempio">Qualche esempio</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// inizio dello scope globale
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animal</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;fox&#39;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getAnimal</span>() {
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// scope della funzione
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;from inside the function:&#39;</span>, <span style="color:#a6e22e">animal</span>);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// chiusa la funzione si chiude anche il suo scope;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// siamo tornati nello scope globale
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">getAnimal</span>();
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;from outside the function:&#39;</span>, <span style="color:#a6e22e">animal</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// from inside the function: fox
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// from outside the function: fox
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 1</span><span><span style="color:#0f0">// inizio dello scope globale
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 2</span><span><span style="color:#0f0"></span><span style="color:#f00">let</span> animal = <span style="color:#87ceeb">&#39;fox&#39;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 4</span><span><span style="color:#f00">function</span> getAnimal() {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 5</span><span>	<span style="color:#0f0">// scope della funzione
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 6</span><span><span style="color:#0f0"></span>	console.log(<span style="color:#87ceeb">&#39;from inside the function:&#39;</span>, animal);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 7</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 8</span><span><span style="color:#0f0">// chiusa la funzione si chiude anche il suo scope;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 9</span><span><span style="color:#0f0">// siamo tornati nello scope globale
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">10</span><span><span style="color:#0f0"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">11</span><span>getAnimal();
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">12</span><span>console.log(<span style="color:#87ceeb">&#39;from outside the function:&#39;</span>, animal);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">13</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">14</span><span><span style="color:#0f0">// from inside the function: fox
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">15</span><span><span style="color:#0f0">// from outside the function: fox
 </span></span></span></code></pre></div><p>All&rsquo;inizio del programma il compilatore trova la variabile <code>animal</code>, che viene assegnata allo scope
 globale. Subito dopo trova una dichiarazione di funzione alla quale assegna un nuovo scope, annidato
 in quello globale; trova quindi una richiesta di valore ad una variabile effettuata dalla istruzione
@@ -270,18 +268,18 @@ della funzione <code>getAnimal</code>) e non la trova. Inizia quindi a cercare n
 esterno a quello della funzione e trova la formale dichiarazione <code>let animal = 'fox'</code>. All&rsquo;interno
 della funzione la variabile <code>animal</code> viene riconosciuta come quella dichiarata all&rsquo;inizio del
 programma e l&rsquo;output delle ultime due righe lo conferma.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animal</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;fox&#39;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getAnimal</span>() {
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animal</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;horse&#39;</span>;
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;from inside the function:&#39;</span>, <span style="color:#a6e22e">animal</span>);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">getAnimal</span>();
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;from outside the function:&#39;</span>, <span style="color:#a6e22e">animal</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// from inside the function: horse
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// from outside the function: fox
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 1</span><span><span style="color:#f00">let</span> animal = <span style="color:#87ceeb">&#39;fox&#39;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 3</span><span><span style="color:#f00">function</span> getAnimal() {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 4</span><span>	<span style="color:#f00">let</span> animal = <span style="color:#87ceeb">&#39;horse&#39;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 5</span><span>	console.log(<span style="color:#87ceeb">&#39;from inside the function:&#39;</span>, animal);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 6</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 8</span><span>getAnimal();
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 9</span><span>console.log(<span style="color:#87ceeb">&#39;from outside the function:&#39;</span>, animal);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">11</span><span><span style="color:#0f0">// from inside the function: horse
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">12</span><span><span style="color:#0f0">// from outside the function: fox
 </span></span></span></code></pre></div><p>Questo programma è quasi identico a quello precedente, l&rsquo;unica differenza è che, quando il
 compilatore inizia a cercare una dichiarazione di variabile cui assegnare il riferimento a <code>animal</code>
 all&rsquo;interno di <code>console.log</code>, lo trova subito nello <em>scope</em> corrente, quindi interrompe la ricerca.
@@ -290,34 +288,34 @@ L&rsquo;output alla fine del programma rende conto di questa differenza.</p>
 <p>Dunque se il compilatore trova una assegnazione a variabile, ma non trova una dichiarazione formale
 di quella variabile nè nello <em>scope</em> corrente nè in nessuno di quelli superiori, solleva un errore.</p>
 <p>O meglio: <em>dovrebbe</em> sollevare un errore. Purtroppo non è sempre così.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getAnimalName</span>() {
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// viene assegnato un valore ad una variabile mai dichiarata:
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">animal</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;fox&#39;</span>;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">getAnimalName</span>();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// output del valore di una variabile che /non dovrebbe/ esistere
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">animal</span>);
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// &#39;fox&#39;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// da dove viene fuori questo valore?
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 1</span><span><span style="color:#f00">function</span> getAnimalName() {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 2</span><span>	<span style="color:#0f0">// viene assegnato un valore ad una variabile mai dichiarata:
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 3</span><span><span style="color:#0f0"></span>	animal = <span style="color:#87ceeb">&#39;fox&#39;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 4</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 6</span><span>getAnimalName();
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 8</span><span><span style="color:#0f0">// output del valore di una variabile che /non dovrebbe/ esistere
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 9</span><span><span style="color:#0f0"></span>console.log(animal);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">10</span><span><span style="color:#0f0">// &#39;fox&#39;
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">11</span><span><span style="color:#0f0">// da dove viene fuori questo valore?
 </span></span></span></code></pre></div><p>È un problema di cui JavaScript ha sempre sofferto: se si assegna un valore ad una variabile non
 dichiarata, JavaScript crea <em>silenziosamente</em> una variabile con quel nome nello <em>scope</em> globale, con
 il concreto rischio di generare <em>bug</em> insidiosi.</p>
 <p>Si può però costringere il compilatore a sollevare un errore in presenza di qualunque variabile non
 formalmente dichiarata facendo girare il programma (o la funzione) in <em>strict mode</em>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#e6db74">&#39;use strict&#39;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getAnimalName</span>() {
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// viene assegnato un valore ad una variabile mai dichiarata:
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#a6e22e">animal</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;fox&#39;</span>;
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ReferenceError: la compilazione si ferma qui,
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">// il programma non sarà eseguito.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">getAnimalName</span>();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">animal</span>);
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 1</span><span><span style="color:#87ceeb">&#39;use strict&#39;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 3</span><span><span style="color:#f00">function</span> getAnimalName() {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 4</span><span>	<span style="color:#0f0">// viene assegnato un valore ad una variabile mai dichiarata:
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 5</span><span><span style="color:#0f0"></span>	animal = <span style="color:#87ceeb">&#39;fox&#39;</span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 6</span><span>	<span style="color:#0f0">// ReferenceError: la compilazione si ferma qui,
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 7</span><span><span style="color:#0f0"></span>	<span style="color:#0f0">// il programma non sarà eseguito.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 8</span><span><span style="color:#0f0"></span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">10</span><span>getAnimalName();
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">12</span><span>console.log(animal);
 </span></span></code></pre></div><div style="display: flex; flex-direction: row; justify-content: right; margin-top: 2em">
 	<div style="width: 75%">
 		<hr style="color: #fcfcfc" />

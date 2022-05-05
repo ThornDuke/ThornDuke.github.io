@@ -15,7 +15,7 @@
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.abe0b1c07d5e33565b0f9b998a7b1b5228b709f36af363e2766bc8035f2237b7.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
 
 
 
@@ -41,19 +41,17 @@ L&rsquo;ambito e il contesto L&rsquo;ambito di una funzione JavaScript (lo scope
 Cerchiamo di capirci qualcosa in più.
 L&rsquo;ambito e il contesto L&rsquo;ambito di una funzione JavaScript (lo scope) è, da un punto di vista esteriore, tutto quello che c&rsquo;è tra una parentesi graffa aperta e una chiusa."><meta itemprop="datePublished" content="2021-11-08T00:00:00+00:00" />
 <meta itemprop="dateModified" content="2021-11-08T00:00:00+00:00" />
-<meta itemprop="wordCount" content="518">
+<meta itemprop="wordCount" content="527">
 <meta itemprop="keywords" content="this,scope,context," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Cosa è &#34;this&#34; in una funzione JavaScript?"/>
 <meta name="twitter:description" content="Il problema Uno dei concetti più ripetuti e più accettati tra i programmatori JavaScript è che this è un costrutto difficile da capire, quasi esoterico. E in effetti i malintesi diffusi su questo argomento sono tanti: che this, chiamato all&rsquo;interno di funzione, si riferisca alla funzione stessa, oppure che si riferisca alla istanza cui la funzione-metodo appartiene.
 Cerchiamo di capirci qualcosa in più.
 L&rsquo;ambito e il contesto L&rsquo;ambito di una funzione JavaScript (lo scope) è, da un punto di vista esteriore, tutto quello che c&rsquo;è tra una parentesi graffa aperta e una chiusa."/>
 
-      
-    
 	
   </head>
 
-  <body class="ma0 avenir bg-near-white production">
+  <body class="ma0 avenir bg-near-white">
 
     
    
@@ -184,7 +182,7 @@ L&rsquo;ambito e il contesto L&rsquo;ambito di una funzione JavaScript (lo scope
       
       
         <span class="f6 mv4 dib tracked"> - 3 minutes read </span>
-        <span class="f6 mv4 dib tracked"> - 518 words </span>
+        <span class="f6 mv4 dib tracked"> - 527 words </span>
       
     </header>
     <div class="nested-copy-line-height lh-copy serif f4 nested-links nested-img mid-gray pr4-l w-two-thirds-l"><h2 id="il-problema">Il problema</h2>
@@ -205,7 +203,7 @@ costante a prescindere dal luogo e dal momento in cui la funzione stessa viene c
 in quanto dipende da come viene chiamata la funzione, in quale momento, all&rsquo;interno di quale
 oggetto.</p>
 <p>Dunque una funzione JavaScript è, metaforicamente, una cellula costituita da una membrana che
-definisce un spazio chiuso e immobile (l&rsquo;ambito), all&rsquo;interno del quale sono definite alcune
+definisce uno spazio chiuso e immobile (l&rsquo;ambito), all&rsquo;interno del quale sono definite alcune
 variabili con le relative regole di accesso, che si muove dinamicamente all&rsquo;interno di un corpo, il
 contesto, che mette a disposizione della funzione le proprietà con cui la funzione stessa può
 interagire.</p>
@@ -214,33 +212,33 @@ interagire.</p>
 comunicazione tra la funzione e ciò che è intorno a essa. In altre parole <code>this</code> è <em>il riferimento
 al contesto</em>.</p>
 <h2 id="alcuni-esempi">Alcuni esempi</h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">zoo</span>(<span style="color:#a6e22e">animal</span>) {
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">speak</span>() {
-</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">animal</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> says </span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">saying</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
-</span></span><span style="display:flex;"><span>	};
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">foxSaying</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">zoo</span>(<span style="color:#a6e22e">fox</span>);
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">foxSaying</span>(); <span style="color:#75715e">// fox says undefined
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">1</span><span><span style="color:#f00">function</span> zoo(animal) {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">2</span><span>	<span style="color:#f00">return</span> <span style="color:#f00">function</span> speak() {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">3</span><span>		console.log(<span style="color:#87ceeb">`</span><span style="color:#87ceeb">${</span>animal<span style="color:#87ceeb">}</span><span style="color:#87ceeb"> says </span><span style="color:#87ceeb">${</span><span style="color:#f00">this</span>.saying<span style="color:#87ceeb">}</span><span style="color:#87ceeb">`</span>);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">4</span><span>	};
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">5</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">7</span><span><span style="color:#f00">let</span> foxSaying = zoo(fox);
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">8</span><span>foxSaying(); <span style="color:#0f0">// fox says undefined
 </span></span></span></code></pre></div><p>La funzione <code>zoo</code> restituisce una funzione, <code>speak</code>, che viene assegnata a <code>foxSaying</code> e che usa un
 riferimento al contesto (<code>this.saying</code>). Ma il contesto in questo caso non è definito, e neanche
 esiste un oggetto globale (come ad es. <code>window</code>) che metta a disposizione una proprietà <code>saying</code>.</p>
 <p><code>this.saying</code> perciò non può che essere <code>undefined</code>.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">animalSound</span> <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">saying</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;grrr&#39;</span>,
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">foxSaying</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">foxSaying</span>,
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">animalSound</span>.<span style="color:#a6e22e">foxSaying</span>(); <span style="color:#75715e">// fox says grrr
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">1</span><span><span style="color:#f00">let</span> animalSound = {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">2</span><span>	saying: <span style="color:#87ceeb">&#39;grrr&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">3</span><span>	foxSaying: foxSaying,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">4</span><span>};
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">6</span><span>animalSound.foxSaying(); <span style="color:#0f0">// fox says grrr
 </span></span></span></code></pre></div><p>Adesso la funzione <code>foxSaying</code> trova un contesto cui è assegnata, l&rsquo;oggetto <code>animalSound</code>, che le
 offre la proprietà <code>saying</code>; all&rsquo;interno di <code>foxSaying</code>, quindi, <code>this</code> è un riferimento a
 <code>animalSound</code> e <code>this.saying</code> si risolve in &ldquo;grrr&rdquo;.</p>
 <p>Un altro modo di assegnare un contesto a <code>this</code> è con il metodo <code>call</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">sleepingAnimal</span> <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">saying</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;mphpfff&#39;</span>,
-</span></span><span style="display:flex;"><span>};
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">foxSaying</span>.<span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">sleepingAnimal</span>); <span style="color:#75715e">// fox says mphpfff
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#000;-moz-tab-size:2;-o-tab-size:2;tab-size:2;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">1</span><span><span style="color:#f00">let</span> sleepingAnimal = {
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">2</span><span>	saying: <span style="color:#87ceeb">&#39;mphpfff&#39;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">3</span><span>};
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7c7c79">5</span><span>foxSaying.call(sleepingAnimal); <span style="color:#0f0">// fox says mphpfff
 </span></span></span></code></pre></div><h2 id="in-conclusione">In conclusione</h2>
 <p>L&rsquo;uso di <code>this</code> all&rsquo;interno di una funzione consente di accedere alle proprietà
 dell&rsquo;oggetto-contesto, quindi rende la stessa funzione utilizzabile in contesti diversi. È un modo
